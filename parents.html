@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>關於友謙的觀察與分享</title>
+<title>關於友謙的發展特徵深度分析報告</title>
 <style>
   :root {
     --bg: #fbf9f5;
@@ -19,24 +19,29 @@
     --green-bd: #b4d5b4;
     --yellow-bg: #fbf3dc;
     --yellow-bd: #e6cc79;
+    --red-bg: #fae8e3;
+    --red-bd: #e0a89a;
     --blue-bg: #e6edf3;
     --blue-bd: #aac0d4;
-    --warm-bg: #faf0e6;
-    --warm-bd: #d4b896;
   }
+
   * { box-sizing: border-box; }
+
   html { scroll-behavior: smooth; }
+
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
                  "PingFang TC", "Microsoft JhengHei", sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 1.85;
     letter-spacing: 0.02em;
     color: var(--ink);
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   .layout {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
@@ -45,6 +50,8 @@
     margin: 0 auto;
     padding: 40px 32px;
   }
+
+  /* TOC */
   .toc {
     position: sticky;
     top: 24px;
@@ -66,8 +73,15 @@
     text-transform: uppercase;
     font-weight: 600;
   }
-  .toc ol { list-style: none; padding: 0; margin: 0; }
-  .toc li { margin-bottom: 6px; }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc;
+  }
+  .toc li {
+    margin-bottom: 6px;
+  }
   .toc a {
     color: var(--ink-soft);
     text-decoration: none;
@@ -76,8 +90,21 @@
     border-radius: 6px;
     transition: all .15s;
   }
-  .toc a:hover { background: var(--accent-light); color: var(--accent); }
-  main { min-width: 0; }
+  .toc a:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+  .toc .sub {
+    padding-left: 16px;
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+
+  /* Content */
+  main {
+    min-width: 0;
+  }
+
   article {
     background: var(--surface);
     padding: 56px 64px;
@@ -85,79 +112,133 @@
     border: 1px solid var(--line);
     box-shadow: 0 1px 3px rgba(0,0,0,.02);
   }
+
   h1 {
-    font-size: 2.2em;
+    font-size: 2em;
     line-height: 1.4;
     margin: 0 0 8px;
     font-weight: 700;
+    letter-spacing: 0.02em;
     color: var(--ink);
   }
-  .subtitle { color: var(--ink-mute); font-size: 18px; margin-bottom: 32px; }
+
+  .subtitle {
+    color: var(--ink-mute);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
   .meta {
-    background: var(--warm-bg);
-    border-left: 4px solid var(--warm-bd);
-    padding: 20px 24px;
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
     border-radius: 0 8px 8px 0;
     margin: 24px 0 40px;
-    font-size: 19px;
-    line-height: 1.85;
-    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
   }
+  .meta strong { color: var(--accent); }
+
   h2 {
-    font-size: 1.6em;
+    font-size: 1.5em;
     margin: 56px 0 20px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--line-strong);
     font-weight: 700;
     color: var(--ink);
+    letter-spacing: 0.02em;
   }
+
   h3 {
-    font-size: 1.25em;
+    font-size: 1.2em;
     margin: 36px 0 14px;
     font-weight: 700;
     color: var(--accent);
+    letter-spacing: 0.02em;
   }
+
   h4 {
-    font-size: 1.1em;
+    font-size: 1.05em;
     margin: 24px 0 10px;
     font-weight: 600;
     color: var(--ink);
   }
+
   p { margin: 0 0 16px; }
-  strong { font-weight: 700; color: var(--ink); }
+
+  strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
   em { color: var(--ink-soft); }
-  hr { border: none; border-top: 1px solid var(--line); margin: 48px 0; }
-  ul, ol { padding-left: 24px; margin: 0 0 20px; }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 48px 0;
+  }
+
+  /* Lists */
+  ul, ol {
+    padding-left: 24px;
+    margin: 0 0 20px;
+  }
   li { margin-bottom: 8px; }
+
+  /* Blockquote / Callout */
   blockquote {
     margin: 24px 0;
-    padding: 20px 26px;
+    padding: 18px 24px;
     background: var(--blue-bg);
     border-left: 4px solid var(--blue-bd);
     border-radius: 0 8px 8px 0;
     color: var(--ink-soft);
-    font-size: 19px;
+    font-size: 15.5px;
   }
   blockquote p:last-child { margin-bottom: 0; }
+
   .callout {
-    padding: 20px 24px;
+    padding: 18px 24px;
     border-radius: 10px;
-    margin: 28px 0;
+    margin: 24px 0;
     border-left: 4px solid;
   }
   .callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
-  .callout.warm { background: var(--warm-bg); border-color: var(--warm-bd); }
   .callout.green { background: var(--green-bg); border-color: var(--green-bd); }
-  .callout.blue { background: var(--blue-bg); border-color: var(--blue-bd); }
   .callout.yellow { background: var(--yellow-bg); border-color: var(--yellow-bd); }
-  .callout-title { font-weight: 700; margin-bottom: 10px; font-size: 1.05em; }
+  .callout.red { background: var(--red-bg); border-color: var(--red-bd); }
+  .callout.blue { background: var(--blue-bg); border-color: var(--blue-bd); }
+
+  .callout-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Tables - the main pain point */
   .table-wrap {
     margin: 24px 0;
     overflow-x: auto;
     border-radius: 10px;
     border: 1px solid var(--line-strong);
+    background: var(--surface);
   }
-  table { width: 100%; border-collapse: collapse; font-size: 18px; line-height: 1.65; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+    line-height: 1.6;
+  }
   th {
     background: var(--accent-light);
     color: var(--accent);
@@ -165,67 +246,116 @@
     text-align: left;
     padding: 14px 16px;
     border-bottom: 2px solid var(--line-strong);
+    white-space: nowrap;
   }
-  td { padding: 14px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
   tr:last-child td { border-bottom: none; }
-  .ask-card {
-    background: var(--surface);
-    border: 2px solid var(--accent-light);
-    border-radius: 14px;
-    padding: 24px 28px;
-    margin: 24px 0;
-  }
-  .ask-card .ask-num {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    padding: 4px 14px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .ask-card h3 { margin-top: 8px; color: var(--ink); }
+  tr:hover td { background: #fcfaf5; }
 
+  /* Tag chips */
+  .chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .chip.green { background: var(--green-bg); color: #2f6e2f; border: 1px solid var(--green-bd); }
+  .chip.yellow { background: var(--yellow-bg); color: #8a6611; border: 1px solid var(--yellow-bd); }
+  .chip.red { background: var(--red-bg); color: #a84a37; border: 1px solid var(--red-bd); }
+  .chip.gray { background: #eee; color: #555; border: 1px solid #ccc; }
+
+  /* Section intro box */
+  .section-intro {
+    background: var(--accent-light);
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin: 16px 0 24px;
+    font-size: 15.5px;
+    color: var(--ink-soft);
+  }
+
+  /* Star ratings */
+  .stars { color: #d4a437; letter-spacing: 2px; }
+
+  /* Print */
   @media print {
-    html, body { background: white !important; font-size: 18pt !important; line-height: 1.8 !important; }
+    html, body { background: white !important; font-size: 20pt !important; line-height: 1.75 !important; }
     body { margin: 0; padding: 0; }
-    .layout { display: block !important; padding: 0 !important; max-width: none !important; gap: 0 !important; grid-template-columns: none !important; }
-    .toc, .progress, .actions { display: none !important; }
+    .layout { display: block !important; padding: 0 !important; margin: 0 !important; max-width: none !important; gap: 0 !important; grid-template-columns: none !important; }
+    .toc { display: none !important; }
     main { width: 100% !important; }
     article { box-shadow: none !important; border: none !important; padding: 0 !important; border-radius: 0 !important; background: white !important; }
-    h1 { font-size: 30pt !important; }
-    h2 { font-size: 24pt !important; page-break-after: avoid; break-after: avoid; }
-    h3 { font-size: 20pt !important; page-break-after: avoid; break-after: avoid; }
-    h4 { font-size: 19pt !important; page-break-after: avoid; break-after: avoid; }
-    p, li { font-size: 18pt !important; }
-    blockquote, .callout, .ask-card { font-size: 18pt !important; }
-    .callout-title { font-size: 20pt !important; }
-    table { font-size: 17pt !important; }
+    h1 { font-size: 34pt !important; }
+    h2 { font-size: 28pt !important; page-break-before: auto; page-break-after: avoid; break-after: avoid; }
+    h3 { font-size: 24pt !important; page-break-after: avoid; break-after: avoid; }
+    h4 { font-size: 22pt !important; page-break-after: avoid; break-after: avoid; }
+    p, li { font-size: 20pt !important; orphans: 3; widows: 3; }
+    blockquote { font-size: 20pt !important; }
+    .subtitle { font-size: 20pt !important; }
+    .section-intro { font-size: 20pt !important; }
+    table { font-size: 20pt !important; line-height: 1.65 !important; }
+    th, td { padding: 14px 16px !important; }
+    .callout { font-size: 20pt !important; padding: 18px 22px !important; }
+    .callout-title { font-size: 22pt !important; }
+    .chip { font-size: 18pt !important; padding: 4px 12px !important; }
+    ul, ol { padding-left: 32px !important; }
+    li { margin-bottom: 8px !important; }
+    #refs ul li { font-size: 18pt !important; line-height: 1.6 !important; }
+    /* Only protect rows and short callouts from splitting - let large blocks flow */
     tr { page-break-inside: avoid; break-inside: avoid; }
     .callout-title { page-break-after: avoid; break-after: avoid; }
     a { color: var(--ink) !important; text-decoration: none !important; }
+    .progress, .actions { display: none !important; }
   }
 
+  /* Mobile */
   @media (max-width: 900px) {
-    .layout { grid-template-columns: 1fr; gap: 0; padding: 12px; }
-    .toc { position: static; max-height: none; margin-bottom: 24px; font-size: 16px; }
-    article { padding: 24px 20px; }
-    body { font-size: 21px; line-height: 1.9; }
-    h1 { font-size: 1.9em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.25em; }
-    h4 { font-size: 1.12em; }
-    .subtitle { font-size: 18px; }
-    .meta { font-size: 20px; }
-    blockquote { font-size: 20px; }
-    table { font-size: 18px; }
-    .callout { font-size: 20px; }
-    .ask-card { font-size: 20px; padding: 22px 24px; }
+    .layout {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 16px;
+    }
+    .toc {
+      position: static;
+      max-height: none;
+      margin-bottom: 24px;
+    }
+    article {
+      padding: 28px 24px;
+    }
+    body { font-size: 16px; }
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.3em; }
+    table { font-size: 14px; }
+    th, td { padding: 10px 12px; }
   }
 
-  .progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0%; transition: width .1s; z-index: 100; }
-  .actions { position: fixed; bottom: 24px; right: 24px; z-index: 50; }
+  /* Top progress bar */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: var(--accent);
+    width: 0%;
+    transition: width .1s;
+    z-index: 100;
+  }
+
+  /* Print button */
+  .actions {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+    z-index: 50;
+  }
   .btn {
     padding: 10px 16px;
     background: var(--accent);
@@ -239,510 +369,971 @@
     font-family: inherit;
   }
   .btn:hover { background: #5f3d21; }
+  @media print { .actions, .progress { display: none; } }
+  @media (max-width: 600px) { .actions { bottom: 12px; right: 12px; } }
 
-  /* A4 pagination */
-  @page { size: A4; margin: 14mm 12mm; }
+  /* A4 pagination - must be at end to override cascade */
+  @page { size: A4; margin: 10mm 10mm; }
 </style>
 </head>
 <body>
 
 <div class="progress" id="progress"></div>
-<div class="actions"><button class="btn" onclick="window.print()">🖨️ 列印 / 存成 PDF</button></div>
+
+<div class="actions">
+  <button class="btn" onclick="window.print()">🖨️ 列印 / 存成 PDF</button>
+</div>
 
 <div class="layout">
 
 <nav class="toc">
   <h2>目錄</h2>
   <ol>
-    <li><a href="#sec1">寫在最前面</a></li>
-    <li><a href="#sec2">一、友謙讓所有人驚艷的地方</a></li>
-    <li><a href="#sec3">二、和友謙日常相處的人觀察到的事</a></li>
-    <li><a href="#sec4">三、這些背後可能是什麼</a></li>
-    <li><a href="#sec5">四、為什麼 ASD 兒童特別需要結構</a></li>
-    <li><a href="#sec6">五、最迫切要處理的三件事</a></li>
-    <li><a href="#sec7">六、為什麼建議做完整評估</a></li>
-    <li><a href="#sec8">七、家人能做的事</a></li>
-    <li><a href="#sec9">八、關於外公的事</a></li>
-    <li><a href="#sec_tutor">九、給家教的建議</a></li>
-    <li><a href="#sec10">十、從個別家庭到共同團隊</a></li>
-    <li><a href="#sec11">十一、最後想說的話</a></li>
-    <li><a href="#faq">附錄:常見疑問</a></li>
+    <li><a href="#statement">重要聲明</a></li>
+    <li><a href="#sec1">一、家庭與照顧結構現況</a></li>
+    <li><a href="#sec2">二、觀察到的特徵全景圖</a></li>
+    <li><a href="#sec3">三、特徵對照分析</a></li>
+    <li><a href="#sec4">四、發展基準比較</a></li>
+    <li><a href="#sec5">五、深入議題探討</a></li>
+    <li><a href="#sec6">六、實務建議與行動路徑</a></li>
+    <li><a href="#sec7">七、紅旗警訊清單</a></li>
+    <li><a href="#sec8">八、台灣可取得的資源</a></li>
+    <li><a href="#sec9">九、本週具體行動</a></li>
+    <li><a href="#sec10">十、結語</a></li>
+    <li><a href="#appendix">附錄:ASD 完整基礎</a></li>
+    <li><a href="#refs">參考文獻</a></li>
   </ol>
 </nav>
 
 <main>
 <article>
 
-<h1>關於友謙的觀察與分享</h1>
+<h1>關於友謙的發展特徵深度分析報告</h1>
 <p class="subtitle">2026-04-16</p>
 
-<h2 id="sec1">寫在最前面</h2>
-
 <div class="meta">
-這份文件不是要告訴大家友謙「哪裡不好」。
-<br><br>
-相反地,這是一份<strong>對友謙的特別之處的理解</strong>——他身上有很多令人驚豔的特質,也有一些與同齡孩子不太一樣的地方。這些不一樣不代表「壞」或「病」,而是他的大腦運作方式有自己的風格。
-<br><br>
-整理這份文件的初衷只有一個:<strong>讓所有愛友謙的人,都能用更準確的方式理解他,陪伴他走得更輕鬆一些。</strong>
-<br><br>
-家中每一位願意陪伴友謙的大人,對他來說都是不可取代的。
-</div>
-
-<h2 id="sec2">一、友謙讓所有接觸他的人驚艷的地方</h2>
-
-<p>在進入任何討論之前,請先讓我們花一點時間看看友謙<strong>真正厲害</strong>的地方:</p>
-
-<ul>
-  <li><strong>聰明有想法</strong>——他對自己的觀點很有主見,這是獨立思考的前兆</li>
-  <li><strong>知識儲備驚人</strong>——對戰爭、政治、歷史這些主題的投入深度,超過同齡人許多</li>
-  <li><strong>表達慾強</strong>——他願意分享、願意說,這在很多孩子身上都看不到</li>
-  <li><strong>誠實直接</strong>——他不懂得敷衍,說的多半是真心話</li>
-  <li><strong>專注力深</strong>——對有興趣的主題可以投入非常久的時間</li>
-  <li><strong>感受豐富</strong>——他有細膩的內心世界,只是有時候不容易表達出來</li>
-  <li><strong>創作力強</strong>——他會自己用 ChatGPT 編寫故事,願意主動產出內容</li>
-</ul>
-
-<p>許多孩子都沒有這些特質。友謙的這些優點是真實的、珍貴的,在合適的環境下,未來很可能成為他的<strong>職涯資產</strong>。歷史、政治、戰略分析、研究工作、寫作⋯⋯這些領域都需要友謙這樣的大腦。</p>
-
-<h2 id="sec3">二、和友謙日常相處的人觀察到的事</h2>
-
-<p>除了優點之外,和友謙有較多日常相處時間的人(家教、外公、阿姨、姨丈、學校老師),也觀察到他有一些<strong>與同齡孩子不太一樣</strong>的地方。我們想如實分享給每位關心他的家人,因為了解這些有助於大家用更合適的方式陪伴他。</p>
-
-<div class="callout warm">
-  <p>這些觀察會比較完整,因為涵蓋了很多面向。請慢慢看,不用急——這份文件不會走丟。如果某一段看了覺得不舒服或想討論,可以暫停,大家之後一起聊。</p>
-</div>
-
-<h3>在人際互動上</h3>
-<ul>
-  <li>不太容易從表情或語氣「讀」出對方的感受</li>
-  <li>對話時比較難切換話題,有時會一直講同一個主題</li>
-  <li>和同學互動中常常卡關,在學校難以交到穩定的朋友</li>
-  <li>跟人說話時,有時眼神會偏向斜眼或往下看</li>
-</ul>
-
-<h3>在情緒表達上</h3>
-<ul>
-  <li>他有情緒,但不太容易用語言說出來</li>
-  <li>有時情緒來得又快又大,難以自己平復</li>
-  <li>會擔心一些事情(例如怕鬼、怕某些聲音),這些擔心對他是真實的困擾——半夜怕到不敢去廁所,曾在房間直接尿出來</li>
-  <li>犯錯後幾乎不會直接承認,習慣用玩笑帶過——這不是叛逆,是他保護自己的方式</li>
-</ul>
-
-<h3>在一些小動作或反應上</h3>
-<ul>
-  <li>偶爾會出現搖擺、甩手、踮腳走路、眨眼等小動作——這些是他的大腦在自我調節,不是壞習慣</li>
-  <li>寫作業時會用力咬鉛筆(一次可能咬斷好幾支)</li>
-  <li>走路習慣只看地面</li>
-  <li>有時會自言自語、像在演練什麼情境,有時表情看起來像在跟空氣吵架——這通常是他內心的對白外顯,不是怪事</li>
-</ul>
-
-<h3>在生活適應上</h3>
-<ul>
-  <li>對規律、可預期的日常反應比較好</li>
-  <li>面對突然的改變或模糊的指令時,容易焦慮或退縮</li>
-  <li>目前就讀第二間國小(已換校一次)</li>
-  <li>學業表現與他的聰明程度不成比例——他這麼聰明,理論上成績應該更好</li>
-</ul>
-
-<h3>在故事創作上</h3>
-<ul>
-  <li>很愛編故事,自己用 ChatGPT 寫,也很喜歡口述給家人聽</li>
-  <li>故事邏輯常常被指出有問題,但他會堅持自己的版本</li>
-  <li><strong>幾乎每個故事的結尾都是「有人死掉」</strong>——這個觀察反覆出現,值得我們留意他內心可能在處理什麼</li>
-</ul>
-
-<h3>學校最近反映的事</h3>
-<ul>
-  <li>游泳課結束後,在女生更衣室外等女同學出來,對她們做吹氣動作</li>
-  <li>體育課後上樓梯時,跟在一個女同學後面,碰了她的手十幾次,事後說是不小心</li>
-</ul>
-
-<div class="callout yellow">
-  <p>這兩件事看起來嚇人,但<strong>友謙不是「壞小孩」</strong>。這是 ASD 孩子進入青春期前夕,加上「不會自己讀懂身體界線」的典型風險組合。重點不是處罰,而是<strong>明確、具體、反覆地教他規則</strong>(本文第六章會說明可以怎麼做)。</p>
-</div>
-
-<h3>在家中的衝突</h3>
-<ul>
-  <li>曾經和外公發生衝突——他罵了外公,外公踢了他一腳,他回踢了外公。這是雙方都需要被理解的事件,不是任何一方單方面的錯</li>
-</ul>
-
-<h3>關於右手三指這件事</h3>
-<p>目前家中有個共識:不要在友謙面前提到他右手三指(大拇指、食指、無名指)發育較小這件事。這份心意是出於保護他,大家都理解。</p>
-<p>不過想分享一個觀察(本文第五章會詳細說明):<strong>11 歲的孩子每天看著自己的手,他自己知道</strong>。沉默不會讓他忘記,但會讓他不知道能跟誰問、跟誰說。這件事或許值得家人一起重新想想,有沒有更適合他的方式。</p>
-
-<h2 id="sec4">三、這些特別之處,背後可能是什麼</h2>
-
-<p>這些特質組合起來,在兒童發展專業領域,有一個中性的描述——<strong>自閉症光譜特質(Autism Spectrum Characteristics)</strong>。</p>
-
-<p>我們知道「自閉症」這個詞可能讓人覺得沉重。所以請讓我們先澄清幾件事:</p>
-
-<h3>這不是疾病,是大腦的不同運作方式</h3>
-<p>「光譜」的意思是——<strong>每個人都在這條光譜上的某個位置</strong>。有些人偏這一端,有些人偏另一端,沒有誰是「正常」誰是「不正常」。</p>
-
-<p>具有光譜特質的人,他們的大腦:</p>
-<ul>
-  <li>在<strong>處理社交訊號</strong>這件事上,比較慢熱或需要明確資訊</li>
-  <li>在<strong>深度專注某個主題</strong>上,比一般人強很多</li>
-  <li>在<strong>系統、邏輯、規則、細節</strong>上,有特殊天賦</li>
-  <li>在<strong>感官處理</strong>上,可能對某些刺激特別敏感或特別不敏感</li>
-</ul>
-
-<h3>這不是「沒教好」造成的</h3>
-<div class="callout green">
-  <p>這一點非常重要。<strong>光譜特質具有強烈的遺傳基礎</strong>(科學研究顯示遺傳率高達 64-91%)。這不是任何人的錯,不是父母教養的問題,也不是孩子故意的。這就是他原本的大腦設計,從出生就是這樣。</p>
-</div>
-
-<h3>許多傑出的人都在光譜上</h3>
-<p>根據公開資料與專業推測,許多改變世界的人物都被認為具有光譜特質——科技領域的 Elon Musk(本人公開承認)、許多在科學、數學、藝術、音樂領域的頂尖工作者,都是這一類的大腦。</p>
-
-<p>友謙對戰爭、政治、歷史的深度投入,在合適的引導下,完全有可能發展成真正的專業能力。</p>
-
-<h3>但也確實需要特別的理解與支持</h3>
-<p>光譜特質的孩子在成長過程中,確實會遇到比一般孩子更多的挑戰——在學校、在同儕、在情緒調節上。<strong>如果早一點被理解、早一點有合適的支持,他們的成長會順利許多</strong>。</p>
-
-<p>反過來說,如果沒有被理解,這些孩子常常會被誤會為「不聽話」「怪」「白目」,在學校被排擠、在家被責備,長期下來會累積很多傷害。</p>
-
-<h2 id="sec5">四、為什麼 ASD 兒童特別需要「結構」</h2>
-
-<p>這一節是這份文件最想跟您分享的核心觀念之一。</p>
-
-<h3>對 ASD 兒童來說,規則 = 安全感</h3>
-<p>一般孩子的大腦會自己「預測世界」——他們從觀察大人、同學、電視就能猜出「什麼可以、什麼不可以、待會會發生什麼」。所以一般孩子在比較自由的環境裡也能自己長大。</p>
-
-<p>但 <strong>ASD 兒童的大腦無法自動做這件事</strong>。他們需要外面有人幫他「畫好線」「告訴他規則」「預告會發生什麼」,他們才能放鬆。</p>
-
-<p>沒有規則,他們不會「自由」——他們會<strong>持續焦慮</strong>。他們的咬鉛筆、自言自語、夜間怕鬼、突然爆發,很多時候都是這份焦慮的外顯。</p>
-
-<h3>所以對 ASD 兒童來說,愛有時候需要表現成規則</h3>
-<div class="callout warm">
-  <p><strong>對 ASD 兒童來說,「給他最多自由就是愛他」這個直覺反而會出問題。</strong>對他們而言,「明確的規則 + 可預期的日常」才是最大的禮物——比禮物、比玩具、比自由都重要。</p>
-  <p>這也意味著:對友謙來說,<strong>「說可以」很容易,但「先不行,讓我們一起想想」反而是真正的愛</strong>。</p>
-</div>
-
-<h3>具體來說,他需要的「結構」是什麼?</h3>
-<ul>
-  <li><strong>事先預告</strong>:「明天我們幾點出發、做什麼、幾點回來」——突然改變對他是壓力</li>
-  <li><strong>明確的界線</strong>:「這個可以、那個不可以」——而不是「看狀況」或「你自己想」</li>
-  <li><strong>具體的指令</strong>:「我們再玩 5 分鐘就回家」——而不是「快了喔」</li>
-  <li><strong>承認錯誤的安全空間</strong>:讓他知道「承認 = 不被罵,只是討論下次怎麼辦」,他才會願意說真話</li>
-  <li><strong>數位使用的陪伴</strong>:不是給他 iPad 自己玩,而是<strong>跟他一起看、一起討論</strong></li>
-</ul>
-
-<p>這些事情看起來瑣碎,但對 ASD 兒童來說,做了和沒做,人生會差很多。</p>
-
-<h2 id="sec6">五、最迫切要處理的三件事</h2>
-
-<p>這一節列出三件最緊急、需要家人共同決定如何處理的事。每一件都直接影響友謙未來的發展。</p>
-
-<div class="ask-card">
-  <span class="ask-num">請求 1</span>
-  <h3>請和友謙一起重新規劃 ChatGPT 的使用方式</h3>
-  <p>友謙會用 ChatGPT 寫故事——這其實是<strong>很厲害的事</strong>,代表他知道怎麼用工具表達創意。但 ChatGPT 對 11 歲、又有 ASD 特質的孩子,需要大人陪在旁邊,原因有兩個:</p>
-  <ol>
-    <li>他可能會無意間接觸到不適齡的內容(包括跟性、暴力相關的話題)——他的好奇心是正常的,但他<strong>不會自己判斷哪些內容對他這個年紀有害</strong></li>
-    <li>他堅持自己故事邏輯、不接受 AI 修正——這個傾向若沒人引導,長期會變成「世界觀只跟 AI 對話」的孤立</li>
-  </ol>
-  <p><strong>具體可以做的:</strong></p>
-  <ul>
-    <li>家中大人看一下他過去的對話紀錄(不是檢查他、是了解他在想什麼)</li>
-    <li>跟他約定:「以後用 ChatGPT,每週至少有一次跟家人一起用」</li>
-    <li>讓他<strong>讀故事給家人聽</strong>——當聽眾,問問題:「為什麼這個角色會這樣?」「結尾為什麼要這樣寫?」</li>
+  <p><strong>對象:</strong>11 歲男孩,日常主要由外公與外籍看護照顧</p>
+  <p><strong>資料來源:</strong></p>
+  <ul style="margin:4px 0 0 0;">
+    <li>心理諮商專業人員的諮商回饋紀錄</li>
+    <li>阿姨、姨丈與家教老師的日常觀察補充</li>
   </ul>
-  <p>這不是禁止,是<strong>把他的興趣變成家人之間的橋樑</strong>。</p>
+  <p style="margin:12px 0 0 0;"><strong>報告類型:</strong>模板 A — 特徵分析型(文獻回顧整合)</p>
 </div>
 
-<div class="ask-card">
-  <span class="ask-num">請求 2</span>
-  <h3>請幫忙跟友謙談「身體界線」這件事</h3>
-  <p>學校最近反映的事(更衣室外吹氣、碰女同學的手十幾次),需要被認真處理。</p>
-  <p>請相信我們:<strong>友謙不是「壞」也不是「變態」</strong>。這是 ASD 孩子進入青春期前夕的典型風險——他不會自己領悟「身體規則」,他需要被<strong>明確、具體、反覆地教</strong>。</p>
-  <p>如果不教,接下來幾年他會持續踩線,在國中階段可能升級為校方正式通報、家長投訴、甚至法律議題。我們不希望他走到那一步。</p>
-  <p><strong>具體可以做的:</strong>由家中合適的大人(建議男性,自然度高)找一個安靜的時間(不是出事當下),用平常心(不嚇他、不羞辱他)跟他談:</p>
-  <ul>
-    <li>身體哪些部位是「自由區」、「同意區」、「私密區」、「完全禁區」</li>
-    <li>「不小心」一次沒事,反覆「不小心」就是不誠實</li>
-    <li>更衣室是<strong>絕對禁區</strong>——男生不可以靠近女生那邊、不可以等她們出來、不可以從外面看</li>
-    <li>「她沒講話」不等於「她可以」——很多時候是她們不知道怎麼反應</li>
-  </ul>
-  <p>如果不知道怎麼開口,有一份具體的對話腳本可以參考。</p>
+<h2 id="statement">重要聲明</h2>
+<blockquote>
+  <p>這份報告是根據諮商師提供的觀察紀錄、家中實際照顧者的補充資訊與專業文獻整理而成,<strong>並非臨床診斷</strong>,也無法替代由臨床心理師、兒童精神科醫師或兒童心智科團隊進行的完整衡鑑。</p>
+  <p>目的是協助家人、照顧者或教師<strong>更準確地理解友謙的行為模式背後可能的發展脈絡</strong>,並提供家中可立即行動的支持方向。</p>
+  <p>任何診斷相關的決定,都應由合格專業人員經由多次會談、標準化測驗與多方資料整合後做出。</p>
+</blockquote>
+
+<h2 id="sec1">一、家庭與照顧結構現況</h2>
+<p class="section-intro">這一節決定了所有介入策略的可行性,必須先講清楚。</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>角色</th><th>關係</th><th>陪伴品質</th></tr></thead>
+<tbody>
+<tr><td>父母</td><td>法律上的主要撫養人</td><td>週末固定接回相聚</td></tr>
+<tr><td>外公</td><td>日常同住主要照顧者</td><td>高齡,實質照顧但無法提供社會認知引導。<strong>體力有限時會以體罰回應衝突</strong>(詳見第五章議題六)</td></tr>
+<tr><td>外籍看護</td><td>日常同住次照顧者</td><td>基本生活照料為主</td></tr>
+<tr><td>家教老師</td><td>每晚作業陪伴</td><td>每日 1-2 小時密集互動(<strong>關鍵介入槓桿</strong>)</td></tr>
+<tr><td><strong>阿姨</strong>(主要關心者)</td><td>姨媽</td><td><strong>非常用心地想要幫助友謙</strong>。三個月前開始<strong>每週固定一天</strong>前往陪伴,是目前最穩定、最積極的外部支持來源</td></tr>
+<tr><td>姨丈</td><td>阿姨的配偶</td><td><strong>前兩年每天接送上下課</strong> → 友謙功能顯著較好(作為歷史上的自然實驗證據);近 4 個月因故撤出日常接送</td></tr>
+</tbody>
+</table>
 </div>
 
-<div class="ask-card">
-  <span class="ask-num">請求 3</span>
-  <h3>請家人一起重新考慮「右手三指」這個話題</h3>
-  <p>家中目前的默契是不在友謙面前提到他右手三指的事。這份心意是出於想保護他,完全可以理解。</p>
-  <p>但<strong>有一件事想請家人一起重新想想</strong>:</p>
-  <ul>
-    <li>友謙 11 歲,他每天看著自己的手,他知道自己跟別人不一樣</li>
-    <li>沉默不會讓他忘記——只會讓他<strong>不知道能跟誰問、跟誰說</strong></li>
-    <li>研究上發現:對身體差異強制沉默的孩子,長期會發展出「我有問題、我不能被看見」的自我感受,反而比能開放討論的孩子更焦慮</li>
-    <li>他現在已經出現一些可能與此有關的訊號——故事裡反覆出現死亡、用玩笑掩蓋情緒、在學校壓抑自己的真實樣子</li>
-  </ul>
-  <p><strong>不是建議高調談論</strong>。建議的方向是:</p>
-  <ul>
-    <li><strong>解除「不能提」的默契</strong>——讓家人在友謙自己提起時,不必刻意迴避</li>
-    <li>當友謙自己提到時,可以平常心回應:「對啊你這幾根手指比較小,這沒什麼好怕講的,你想問什麼?」</li>
-    <li>找一個輕鬆的時機,讓他知道:<strong>「這件事在我們家不是秘密,你想聊我們可以聊」</strong></li>
-  </ul>
-  <p>這份解除,可能比想像中對他更療癒。</p>
-</div>
-
-<h2 id="sec7">六、為什麼建議做一次完整的兒童發展評估</h2>
-
-<p>我們知道這個詞聽起來讓人警戒,所以請讓我們說清楚這件事的實際內容:</p>
-
-<h3>評估不是「診斷有病」,而是「看清楚這個孩子」</h3>
-<p>兒童發展評估比較像是一次<strong>深度的健檢</strong>——由專業團隊(兒童心智科醫師、臨床心理師、語言治療師、職能治療師)用標準化的工具,<strong>全面地看清楚友謙的長處、挑戰、需要的支持方式</strong>。</p>
-
-<p>評估結束後,您會拿到一份完整的報告,內容包括:</p>
-<ul>
-  <li>友謙的認知能力剖面(他強在哪裡、弱在哪裡)</li>
-  <li>他的溝通與社交風格的具體樣貌</li>
-  <li>他的情緒與感官特質</li>
-  <li>適合他的學習方式與支持方式的建議</li>
-</ul>
-
-<h3>這份報告的價值</h3>
+<h3>三個核心觀察必須被記住</h3>
 <ol>
-  <li><strong>對家人</strong>:讓家人更準確地理解這個孩子,知道怎麼支持最有效</li>
-  <li><strong>對學校</strong>:讓老師用對的方式教他,減少誤解與衝突</li>
-  <li><strong>對友謙</strong>:讓他不會一直以為「是我不好」,而是理解「我的大腦就是這樣運作」</li>
-  <li><strong>對未來</strong>:如果友謙在升學或生涯上需要一些彈性資源,這份報告是合法的依據</li>
+  <li><strong>家中不同照顧者對友謙的觀察可能差很大</strong>——這是 ASD 兒童常見現象(autistic masking),孩子在不同關係裡會呈現不同樣子,不代表誰看錯了</li>
+  <li><strong>穩定、可預期的成人陪伴對他至關重要</strong>——任何撤除或不一致都會立即影響他的情緒穩定</li>
+  <li><strong>環境一變,他就崩</strong>——過去穩定的每日接送撤除後短期內功能下降,這本身就是<strong>神經發展差異存在</strong>的間接證據</li>
 </ol>
 
-<h3>即使結果顯示「沒事」也值得</h3>
-<p>評估結果並不必然導向診斷。有些孩子做完評估,發現只是特定環節需要加強,不需要標籤,那也很好——<strong>我們至少有了確定的答案,可以安心。</strong></p>
+<h2 id="sec2">二、觀察到的特徵全景圖</h2>
 
-<h3>台灣的評估管道(健保給付為主)</h3>
+<h3>認知優勢面</h3>
+<ul>
+  <li>高智能、思辨豐富、對自己的想法有主見</li>
+  <li>對<strong>特定主題(戰爭、政治、歷史)</strong>投入深、知識儲備充足</li>
+  <li>願意主動分享、表達欲強</li>
+  <li>說話偏晚,<strong>但後來進展極快</strong>(典型「早期遲滯-後期爆發」語言發展樣貌)</li>
+</ul>
+
+<h3>社會溝通困難面</h3>
+<ul>
+  <li>不易直覺理解他人感受或當下情境</li>
+  <li>難以判讀他人情緒</li>
+  <li>對話中難以自主停下或切換話題(monotopic conversation)</li>
+  <li>需要明確、具體、可預期的指令</li>
+  <li>對暗示、含蓄提醒、非語言線索敏感度低</li>
+  <li><strong>經常斜眼看人</strong>(非典型眼神接觸模式)</li>
+  <li><strong>在不同關係中會呈現不同樣子</strong>(高功能 masking,在最在乎的人面前更壓抑特殊行為)</li>
+</ul>
+
+<h3>刻板重複行為面</h3>
+<ul>
+  <li><strong>搖擺身體、甩手、眨眼、踮腳走路</strong>——教科書級的 ASD 自我刺激行為(stimming)</li>
+  <li><strong>對空氣說話,表情像在吵架或反抗</strong>——可能為內在對白外顯(internal monologue leaking)或情境預演(scripting)</li>
+  <li>家教課 2 小時內<strong>咬斷 3 支鉛筆</strong>——嚴重的口腔感覺尋求/焦慮釋放行為</li>
+  <li><strong>走路大多只看地上</strong>——感官或社交逃避</li>
+</ul>
+
+<h3>情緒運作面</h3>
+<ul>
+  <li>有情緒但難以用語言說出(述情障礙樣貌)</li>
+  <li>情緒爆發時以<strong>大哭與攻擊行為</strong>呈現——曾攻擊過外公</li>
+  <li><strong>半夜怕鬼不敢上廁所,曾直接尿在房間</strong>——夜間焦慮症狀明顯</li>
+  <li>刻意避談父母——依附議題被壓抑但未消失</li>
+  <li>睡眠與飲食基本正常(目前未見共病性睡眠/進食障礙)</li>
+</ul>
+
+<h3>適應與生活面</h3>
+<ul>
+  <li><strong>目前就讀第二間國小</strong>(已換校一次)——社會適應已出現明顯困難</li>
+  <li>基本無朋友、被排擠</li>
+  <li>成績差(與其認知優勢不成比例——典型 2e 雙重特殊樣貌)</li>
+  <li>從未接受過正式發展評估</li>
+</ul>
+
+<h3>其他重要行為觀察</h3>
+<ul>
+  <li><strong>學校已通報性別界線事件</strong>:游泳課後在女生更衣室外等候並對女同學做吹氣動作;體育課後上樓梯時碰觸女同學的手十餘次,聲稱是不小心</li>
+  <li><strong>故事創作高頻出現死亡主題</strong>:自行使用 ChatGPT 創作故事,情節常違反邏輯且堅持己見;平時對家人口述的故事「每個結尾都是有人死掉」</li>
+  <li><strong>先天右手三指發育差異</strong>(大拇指、食指、無名指較小)——目前家中默契是不主動提及此事</li>
+  <li><strong>認錯困難、習慣用玩笑帶過</strong>——幾乎從不直接承認錯誤</li>
+  <li><strong>外公衝突事件的完整情境</strong>:該次衝突為「友謙罵外公 → 外公踢友謙 → 友謙回踢」的雙向升級,不是單向攻擊</li>
+</ul>
+
+<h2 id="sec3">三、特徵與可能發展狀態的對照分析</h2>
+
+<div class="callout green">
+  <div class="callout-title">🟢 最高度吻合的方向:自閉症光譜障礙(ASD, Level 1-2)</div>
+  <p>綜合所有觀察到的行為,符合 ASD 的證據相當完整,<strong>已接近可以大膽假設的程度</strong>。</p>
+</div>
+
+<h3>準則 A——社會溝通與互動的持續缺損(三項皆需符合)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th style="width:26%">準則</th><th>友謙的對應表現</th><th style="width:22%">吻合度</th></tr></thead>
+<tbody>
+<tr><td>A1 社會情緒互惠不足</td><td>一直講同一主題、較難自行轉換、難直覺理解感受</td><td><span class="chip green">🟢 高度吻合</span></td></tr>
+<tr><td>A2 非語言溝通缺損</td><td><strong>經常斜眼看人</strong>、走路只看地上、表情運用特殊</td><td><span class="chip green">🟢 高度吻合</span></td></tr>
+<tr><td>A3 發展維持關係困難</td><td><strong>無朋友、被排擠、曾換過學校</strong></td><td><span class="chip green">🟢 高度吻合</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>準則 B——受限重複行為/興趣(至少兩項)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th style="width:26%">準則</th><th>友謙的對應表現</th><th style="width:22%">吻合度</th></tr></thead>
+<tbody>
+<tr><td>B1 刻板重複動作/言語</td><td><strong>搖擺、甩手、眨眼、踮腳走、對空氣吵架</strong></td><td><span class="chip green">🟢 教科書級符合</span></td></tr>
+<tr><td>B2 堅持常規</td><td>資訊不足,但對話無法切換主題可能反映認知彈性低</td><td><span class="chip yellow">🟡 部分吻合</span></td></tr>
+<tr><td>B3 高度受限固著興趣</td><td>戰爭、政治、歷史的深度投入</td><td><span class="chip green">🟢 高度吻合</span></td></tr>
+<tr><td>B4 感官異常</td><td><strong>咬斷鉛筆(口腔尋求)、走路看地(視覺逃避)</strong></td><td><span class="chip green">🟢 高度吻合</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>其他支持證據</h4>
+<ul>
+  <li>說話晚但後續爆發的語言發展樣貌</li>
+  <li>症狀從幼兒期持續至今(符合 ASD 的「發展性」要求)</li>
+  <li>症狀在功能上造成顯著損害(換校、無朋友、學校通報性別界線事件、家中衝突行為)</li>
+  <li>排除智能障礙(他明顯聰明)</li>
+</ul>
+
+<div class="callout green">
+  <div class="callout-title">判讀(🟢 高信心)</div>
+  <p>若送正式評估,友謙<strong>極可能</strong>被診斷為 ASD,且嚴重度可能在 <strong>Level 1 偏高端到 Level 2</strong>(需要明顯支持到需要實質支持)之間。之前懷疑 Level 1 是因為資訊不足,補充的資訊(刻板動作、攻擊、換校、對空氣吵架、咬鉛筆)讓圖像偏嚴重。</p>
+</div>
+
+<h3>🟡 需要同時關注的共病可能性</h3>
+
+<h4>共病一:焦慮症(Anxiety Disorder)——可能性高</h4>
+<ul>
+  <li>半夜怕鬼到在房間小便</li>
+  <li>咬斷 3 支鉛筆(焦慮的身體釋放)</li>
+  <li>ASD 與焦慮症共病率高達 <strong>40-50%</strong>(van Steensel et al., 2011 統合分析)</li>
+</ul>
+
+<h4>共病二:注意力不足過動症 ADHD——值得評估</h4>
+<ul>
+  <li>成績差與認知優勢不成比例,可能有注意力調節問題</li>
+  <li>ASD 與 ADHD 共病率 <strong>30-50%</strong>(Lai et al., 2014)</li>
+  <li>建議同時做 Conners 3 或類似工具</li>
+</ul>
+
+<h4>共病三:依附與情緒議題——值得關注</h4>
+<ul>
+  <li>幼年照顧者的穩定度會影響情緒發展</li>
+  <li>「刻意避談某些話題」是孩子<strong>防衛性抑制</strong>的訊號</li>
+  <li>但這些議題<strong>不會造成</strong> ASD(ASD 遺傳率 64-91%,Tick et al., 2016),而是<strong>與 ASD 共同作用</strong>讓困難被放大</li>
+</ul>
+
+<h4>共病四:資優+ASD(2e 雙重特殊)——需要被看見為優勢</h4>
+<ul>
+  <li>認知能力與成績的落差是典型 2e 樣貌</li>
+  <li>他的專注、知識、思辨能力是真實的資產</li>
+  <li>如果只看見困難而沒看見優勢,介入會失敗</li>
+</ul>
+
+<div class="callout red">
+  <div class="callout-title">🔴 對空氣吵架、表情反抗——需要特別說明</div>
+  <p>這個行為常被誤以為是「精神病性症狀」,但在 ASD 兒童中<strong>大多數情況</strong>是以下幾種現象之一:</p>
+  <ol>
+    <li><strong>內在對白外顯</strong>——思考時不自覺把心裡的對話講出來</li>
+    <li><strong>情境預演/重演</strong>(scripting / rehearsing)——把過去或想像的衝突場景反覆演練</li>
+    <li><strong>角色扮演延伸</strong>——把對某個主題的興趣(戰爭、政治)投射成對話</li>
+    <li><strong>自我調節策略</strong>——用外化對話處理情緒</li>
+  </ol>
+  <p><strong>但因為你無法單獨判斷頻率、強度、現實感的狀態</strong>,這一點<strong>讓正式評估的必要性從「建議」升級到「應該盡快安排」</strong>。這不是要嚇你,是坦白這個症狀需要專業眼睛看過。</p>
+</div>
+
+<h2 id="sec4">四、發展基準比較:11 歲男孩的預期 vs 友謙現狀</h2>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>能力向度</th><th>11 歲典型發展</th><th>友謙狀態</th><th style="width:18%">落差</th></tr></thead>
+<tbody>
+<tr><td>觀點取替</td><td>同時考慮多方觀點</td><td>需明確引導</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>情緒辨識</td><td>辨識複雜情緒</td><td>難辨他人情緒</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>情緒表達</td><td>用語言描述情緒</td><td>有情緒但說不出</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>對話語用</td><td>偵測聽者興趣、適時轉題</td><td>需明確「換話題」指令</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>非語言線索</td><td>能讀表情、語氣、姿勢</td><td>需被教導、斜眼</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>情緒調節</td><td>大哭但較少身體攻擊</td><td>大哭+攻擊(對外公)</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>同儕關係</td><td>有 1-3 個穩定朋友</td><td>無朋友、被排擠</td><td><span class="chip red">顯著落後</span></td></tr>
+<tr><td>學校適應</td><td>穩定在同一學校</td><td>目前第二間國小(已換 1 次)</td><td><span class="chip yellow">部分落後</span></td></tr>
+<tr><td>認知/知識</td><td>一般程度</td><td>明顯超齡</td><td><span class="chip green">顯著超前</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout green">
+  <div class="callout-title">判讀(🟢 高信心)</div>
+  <p>友謙呈現<strong>嚴重的非同步發展</strong>——認知超齡,社會情緒嚴重落後。這種落差模式本身就是 ASD + 可能 2e 的典型輪廓。</p>
+</div>
+
+<h2 id="sec5">五、深入議題探討</h2>
+
+<h3>議題一:Masking(面具行為)——為何不同家人看到不同的友謙</h3>
+<p>高功能 ASD 兒童(尤其認知能力好的)常發展出 masking 策略:</p>
+<ul>
+  <li>觀察「正常人」怎麼互動,背下來模仿</li>
+  <li>在最在乎的人面前特別努力壓抑刺激行為、壓下興趣獨白,試圖「表現得正常」</li>
+  <li>事後在安全的人面前崩潰釋放</li>
+</ul>
+
+<h4>研究發現</h4>
+<ul>
+  <li>Masking 高度耗能,長期會導致焦慮、憂鬱、自我認同混亂(Hull et al., 2017;Cage & Troxell-Whitman, 2019)</li>
+  <li>Masking 是 ASD 晚期診斷(遲到青少年或成年才被發現)最主要的原因</li>
+  <li>女性 ASD 患者 masking 更普遍,但男性中有興趣導向、認知能力好的孩子也很常見</li>
+</ul>
+
+<h4>對友謙的意涵</h4>
+<ul>
+  <li>不同家人看到的友謙不一樣,不代表誰看錯——他在不同關係中會呈現不同樣貌</li>
+  <li>他在某些家人面前更努力「表現得好」,反而代表他<strong>很在乎那段關係</strong>。但這份努力很耗能</li>
+  <li>聚會結束後幾天若出現崩潰、拒學、情緒失控,可能不是巧合,是 <strong>masking 的後座力(autistic burnout)</strong></li>
+</ul>
+
+<h3>議題二:環境效應——歷史上的自然實驗</h3>
+<div class="callout blue">
+  <p><strong>前兩年:</strong>姨丈每日接送 → 穩定、可預期、有品質的一對一成人時間 → 友謙功能顯著較好</p>
+  <p><strong>近 4 個月:</strong>日常接送撤除 → 環境鷹架消失 → 功能惡化、咬鉛筆、攻擊、退縮</p>
+  <p><strong>近三個月:</strong>阿姨開始每週固定一天陪伴 → 是目前最穩定的外部支持嘗試,為友謙保住了一條重要的情感連結</p>
+</div>
+
+<p>這是一個近乎「自然實驗」的觀察。在 ASD 介入研究中,這種現象稱為:</p>
+<ul>
+  <li><strong>Scaffolding effect</strong>(鷹架效應):外部結構支持讓個體表現超出其獨立能力</li>
+  <li>一旦撤除 scaffolding,表現會回落,這不是「退步」,是「本來的樣子」重新出現</li>
+  <li>關鍵意涵:<strong>改善有限但一定會發生</strong>;<strong>撤除支持會立即可見</strong></li>
+</ul>
+
+<div class="callout green">
+  <p><strong>這件事的實務重要性:</strong>就算做不到正式診斷與治療,<strong>只要重建穩定的成人互動</strong>,友謙的外顯功能就會改善。這是最有說服力的介入依據。</p>
+</div>
+
+<h3>議題三:換校的代價——不要再為友謙轉學</h3>
+<p>友謙目前就讀第二間國小(已換過一次)。每次轉學對 ASD 兒童來說:</p>
+<ul>
+  <li>輔導紀錄歸零、師生關係歸零、同儕適應歸零</li>
+  <li>ASD 兒童對環境改變本就高度敏感,轉學等於<strong>一次再適應創傷</strong></li>
+  <li>新學校沒有前情提要,會把友謙當成「新來的怪小孩」,敵意往往比舊同學累積的更快</li>
+  <li>特教資源的申請需要連續觀察紀錄——換校會讓這條路更難</li>
+</ul>
+<div class="callout yellow">
+  <p><strong>強烈建議:不要再為友謙轉學。</strong>改為進入目前學校的輔導系統,從內部爭取支持。</p>
+</div>
+
+<h3>議題四:外公衝突事件——雙向升級的完整情境</h3>
+<div class="callout red">
+  <div class="callout-title">事件經過</div>
+  <p>外公與友謙的衝突情境是:<strong>友謙用言語罵外公 → 外公踢了友謙 → 友謙回踢</strong>。這是雙向升級,不是友謙單方攻擊。</p>
+</div>
+
+<p>這個脈絡的改變非常關鍵:</p>
+<ul>
+  <li><strong>外公的體罰不是中性的管教反應</strong>——對 ASD 兒童,體罰已被文獻證實會加劇攻擊、焦慮、信任瓦解(推測屬兒童發展領域共識)</li>
+  <li><strong>友謙的罵人很可能有前因</strong>——ASD 兒童很少無故罵最熟悉的照顧者,通常是情緒過載或溝通受挫</li>
+  <li><strong>「回踢」是防衛,不是主動攻擊</strong>——11 歲孩子被體罰後的即時身體反應</li>
+</ul>
+
+<h4>要處理的不只是友謙,還有外公的管教方式</h4>
+<p>外公是日常主要照顧者,高齡、體力有限、面對 ASD 孫子的情緒行為時沒有工具——這個組合會讓體罰成為反射動作。這不是外公「不愛」友謙,是他手上沒有替代方案。</p>
+<p>阿姨或姨丈需要私下(不在友謙面前)找外公談一次。建議方向:</p>
+<ul>
+  <li><strong>不指責</strong>:「爸,你照顧他這麼辛苦,有些方法我們一起想」</li>
+  <li><strong>提供替代工具</strong>:「他罵你時,你直接離開到另一個房間,15 分鐘後再回頭處理。體罰對他這種孩子反而會更激動」</li>
+  <li><strong>分攤照顧</strong>:若外公體力被磨到,考慮阿姨/姨丈多分擔主要照顧時段</li>
+</ul>
+
+<h3>議題五:情緒爆發的一般處理(不限外公情境)</h3>
+<p>對 ASD + 焦慮兒童,情緒爆發最常見的類型是<strong>挫折/焦慮失控型</strong>。處理方向:</p>
+<ul>
+  <li>不是處罰,是<strong>降低觸發因子</strong>(噪音、突發變動、長時間社交、感官過載)</li>
+  <li>建立<strong>情緒預警系統</strong>(溫度計、手勢、安全詞)</li>
+  <li>在他平靜時<strong>反覆預演</strong>下次類似情境可以怎麼辦</li>
+</ul>
+
+<h3>議題六:夜間焦慮與「怕鬼尿房間」</h3>
+<p>這不是「貪玩」或「故意」。這反映:</p>
+<ul>
+  <li>夜間分離焦慮(在這個年齡正常程度會逐步下降,11 歲仍嚴重屬偏離)</li>
+  <li>ASD 兒童的<strong>想像與現實界線處理特殊</strong>,怕「鬼」可能是具象化的不安全感</li>
+  <li>房間內小便是<strong>焦慮下的退行行為</strong>,不是行為問題</li>
+</ul>
+<h4>處理方向</h4>
+<ul>
+  <li>不責備尿濕</li>
+  <li>提供夜燈、動線簡化</li>
+  <li>房間與廁所之間放安心物(鑰匙圈小燈、抱著走的玩偶)</li>
+  <li>必要時陪同直到獨立為止(不急著「訓練獨立」)</li>
+</ul>
+
+<h3>議題七:性別界線事件(🔴 最優先處理)</h3>
+<div class="callout red">
+  <div class="callout-title">學校已通報的行為</div>
+  <ul>
+    <li>游泳課後在女生更衣室外等女同學出來,對她們做吹氣動作</li>
+    <li>體育課後上樓梯時碰觸女同學的手十餘次,聲稱是不小心</li>
+  </ul>
+</div>
+
+<p>這類行為在 ASD 前青春期兒童中有文獻記載的風險組合(推測:屬發展精神醫學共識領域):</p>
+<ul>
+  <li><strong>讀不懂身體界線</strong>(ASD 社會認知缺損)</li>
+  <li><strong>好奇心浮現</strong>(11 歲荷爾蒙開始啟動)</li>
+  <li><strong>不理解「後果」的社會意涵</strong>(心智理論落後)</li>
+  <li><strong>獨自使用 ChatGPT</strong> → 可能接觸不適齡內容(推測:未經查證)</li>
+</ul>
+
+<h4>這不是「變態」,但絕對不能當小孩不懂事帶過</h4>
+<p>若不處理,進入國中後可能升級為校方通報、家長投訴、甚至法律議題。ASD 加上青春期是有國際研究的風險期,需要明確、具體、反覆的教育。</p>
+
+<h4>立刻要做的三件事</h4>
+<ol>
+  <li><strong>檢查 ChatGPT 使用情形</strong>——帳號是誰的?他問過什麼?故事內容有無不適齡主題?是否接觸過成人內容?</li>
+  <li><strong>一場身體界線的談話</strong>——由阿姨或姨丈主導(不是外公)。具體內容:
+    <ul>
+      <li>哪些身體部位只有自己可以碰、哪些在誰的同意下才可以碰</li>
+      <li>「吹氣、跟著走、反覆碰觸同一個人」都是讓別人不舒服的行為</li>
+      <li>「不小心」用一次可以,一直用等於不誠實</li>
+      <li>用圖示或社交故事(Social Story)視覺化「安全距離」</li>
+    </ul>
+  </li>
+  <li><strong>主動與學校輔導室會談</strong>——不是等學校再通報,而是主動告訴他們家中在做什麼,請學校配合用「具體指令」而非含糊懲罰</li>
+</ol>
+
+<h3>議題八:故事創作裡的死亡主題</h3>
+<p>友謙自行使用 ChatGPT 創作故事(情節違反邏輯且堅持己見),日常口述給家人的故事<strong>結尾幾乎都是有人死掉</strong>。</p>
+
+<h4>要先區分兩件事</h4>
+<p>11 歲男孩的故事中出現戰鬥、死亡、暴力主題,在男童文學與媒體環境中是常見的(推測:屬兒童發展常識)。但友謙的組合特別需要留意——<strong>頻率高 + 多重情感壓力</strong>:</p>
+<ul>
+  <li>身體差異無法公開談(身體層面的「我不能被看見」)</li>
+  <li>在學校被排擠、無朋友(社會層面的「我不被接受」)</li>
+  <li>家中曾發生衝突的累積情緒</li>
+  <li>對自己感受找不到語言表達</li>
+</ul>
+<p>(推測:這些故事可能承載著他無法用語言直接表達的失去、憤怒、被拒感。這是合理假設,但不是確診。)</p>
+
+<h4>不要禁止,但要用故事當窗口</h4>
+<p>故事是 ASD 兒童重要的自我表達渠道——禁止只會關上一扇門。改用「擴寫問句」讓故事成為理解他內心的工具:</p>
+<ul>
+  <li>「如果這個角色不死,他還可以怎麼辦?」</li>
+  <li>「為什麼他非死不可?」</li>
+  <li>「他死之前最想跟誰說什麼?」</li>
+  <li>「誰會最難過?為什麼?」</li>
+</ul>
+<p>ChatGPT 指出他故事不合邏輯但他堅持——是典型的 ASD 認知僵化(cognitive inflexibility),不是故意唱反調。</p>
+
+<div class="callout red">
+  <div class="callout-title">需要升級處理的訊號</div>
+  <p>若故事開始出現下列內容,需要盡快尋求專業評估:</p>
+  <ul>
+    <li>具體的自我死亡(角色是自己或明顯投射自己)</li>
+    <li>具體的殺害特定真實對象(家人、同學等)</li>
+    <li>包含具體方法、計畫、時間的死亡描述</li>
+  </ul>
+</div>
+
+<h3>議題九:右手三指差異——沉默會變成羞恥</h3>
+<p>友謙右手大拇指、食指、無名指先天發育較小。家中目前的默契是<strong>不主動與友謙談論此事</strong>,這份默契出於保護心意。</p>
+
+<p>(推測:基於身心差異兒童心理學共識)對可見的身體差異長期沉默,與<strong>羞恥式身份認同</strong>高度相關。孩子 11 歲,他每天都看著自己的手,他知道。沉默不會讓他忘記,只會讓他不知道能向誰說、向誰問、向誰求理解。</p>
+
+<p>這一條與 masking 是同構的——都是「不能當真實的自己」。長期累積會成為自我價值感的破口。</p>
+
+<h4>建議作法——平常化處理,不需高調</h4>
+<p>建議方向:</p>
+<ul>
+  <li><strong>不主動開啟話題</strong>,但<strong>當友謙自己提起時不迴避</strong></li>
+  <li>語氣平常:「對啊,你這三根手指比較小,這沒什麼好怕講的。你想問什麼?」</li>
+  <li><strong>不當重大議題講</strong>——愈平常化,愈能卸除羞恥</li>
+  <li>長期目標:讓他能自己決定要不要跟同學解釋、怎麼解釋</li>
+  <li>可考慮:英文有 Lucky Fin Project(先天手部差異兒童社群),台灣有肢體不便相關協會——但不需強求他加入,讓他知道「世界上不只他一個人」就夠</li>
+</ul>
+
+<h3>議題十:認錯困難與玩笑式迴避</h3>
+<p>友謙犯錯後幾乎不認錯,習慣用玩笑帶過。這是 ASD + 羞恥規避的組合,幾乎是教科書模式。</p>
+
+<h4>「認錯」對 ASD 孩子特別難</h4>
+<p>承認錯誤需要:</p>
+<ul>
+  <li>心智理論(理解對方為什麼生氣)</li>
+  <li>情緒調節(忍受「我做錯了」的羞恥感)</li>
+  <li>預測能力(承認後會發生什麼)</li>
+</ul>
+<p>以上三者都是 ASD 的核心困難領域。加上在這個家庭裡,「認錯 = 被罵、被踢(外公)、被嘲笑」——他學會用玩笑躲是理性反應。</p>
+
+<h4>調整方向</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>不要這樣做</th><th>改成這樣</th></tr></thead>
+<tbody>
+<tr><td>「你為什麼不承認?」</td><td>「我知道這很難說出來,我等你」</td></tr>
+<tr><td>「你又在開玩笑逃避!」</td><td>「我看得出來你在用玩笑蓋過去,沒關係,我們先不談」</td></tr>
+<tr><td>「承認就沒事!」(然後還是罵)</td><td>承認 = 真的不罵,只討論下次怎麼做</td></tr>
+<tr><td>當眾質問</td><td>一對一、安靜、平靜時再談</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout green">
+  <p><strong>核心原則:</strong>承認錯誤的成本必須低於隱藏錯誤的成本。如果家裡「說真話會倒楣」,他永遠不會認。</p>
+</div>
+
+<h2 id="sec6">六、實務建議:可以立刻行動的支持路徑</h2>
+<p class="section-intro">這是本份報告中最核心的行動指引。</p>
+
+<h3>路徑 1:阿姨每週陪伴的升級 <span class="stars">★★★</span>(最立即、最關鍵)</h3>
+
+<div class="callout green">
+  <p>阿姨三個月來每週一天的固定陪伴,是友謙目前<strong>最穩定的外部支持</strong>——這件事的重要性不能被低估。許多親戚不會做到這個程度,這份心意是介入的最大資產。</p>
+</div>
+
+<p>現在的關鍵不是「要不要陪」,而是「<strong>怎麼陪最有效</strong>」。ASD 兒童的神經系統對互動方式特別敏感,有些方式會讓陪伴事半功倍,有些方式會無意間讓孩子退縮。這不是任何人的錯——多數家人一開始都不會知道這些技巧,這些是需要被「教」的方法學。</p>
+
+<h4>為什麼 ASD 兒童對陪伴方式特別敏感?</h4>
+<p>文獻指出(Lerner et al., 2012;Mazefsky et al., 2013):ASD 兒童在面對<strong>直接指責、否定、說教</strong>時,杏仁核(大腦的警報系統)會啟動 fight-or-flight 反應,前額葉(學習與理解的區域)會暫時「關機」。這意味著:</p>
+<ul>
+  <li>當大人說「你怎麼又這樣!」——孩子聽到的不是內容,是「危險訊號」</li>
+  <li>這時候即使大人講的是對的,孩子的大腦也無法吸收</li>
+  <li>長期累積後,孩子會<strong>把這個大人當成壓力源來源</strong>,即使大人其實很愛他</li>
+</ul>
+<p>這就是為什麼「用心但沒有用對方法」的陪伴,有時候反而會讓 ASD 兒童更焦慮。這不是愛不夠,是神經系統的特性。</p>
+
+<h4>三個可以立刻開始的陪伴技巧(每次見面都能用)</h4>
+
+<div class="callout blue">
+  <div class="callout-title">技巧 1:先問「發生什麼」,再決定要不要反應</div>
+  <p>聽到友謙有狀況(在學校、在家、作業問題)時,不要先下判斷。改用:</p>
+  <ul>
+    <li>❌ 不要:「你怎麼又這樣?你不知道這樣不對嗎?」</li>
+    <li>✅ 改成:「我聽說今天發生○○,可以告訴我當時發生什麼嗎?」</li>
+    <li>✅ 然後:「那時候你在想什麼?是什麼讓你這樣做?」</li>
+  </ul>
+  <p>光是「先聽」這件事,就能讓友謙的警報系統不啟動,他會開始願意跟你說真話。</p>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">技巧 2:情緒命名法(取代指責)</div>
+  <p>當他有情緒、行為怪異時,試著幫他「翻譯」他的感受:</p>
+  <ul>
+    <li>❌ 不要:「你這樣講話很沒禮貌!」</li>
+    <li>✅ 改成:「你看起來有點急,是不是覺得大家都不聽你?」</li>
+    <li>❌ 不要:「你怎麼又這樣煩躁?」</li>
+    <li>✅ 改成:「我看你剛剛咬鉛筆,你現在是覺得卡住了嗎?」</li>
+  </ul>
+  <p>這個技巧對 ASD + 述情障礙的孩子特別有效,因為他們自己也不知道怎麼稱呼自己的情緒。</p>
+</div>
+
+<div class="callout blue">
+  <div class="callout-title">技巧 3:事後回顧(取代當下糾正)</div>
+  <p>如果需要跟他討論「這樣做不對」,請等到他情緒完全平靜之後(可能幾小時或隔天),用這種方式:</p>
+  <ul>
+    <li>❌ 不要在他情緒高漲時說教——他真的聽不進去</li>
+    <li>✅ 改成:事後在輕鬆情境問「剛才那件事,如果再來一次,你想怎麼試試看?」</li>
+    <li>✅ 或用假設性語言:「如果是別的小朋友遇到一樣的事,你覺得他可以怎麼做?」</li>
+  </ul>
+  <p>這樣他不會覺得被罵,反而能真正學到東西。</p>
+</div>
+
+<h4>阿姨每週陪伴的建議結構</h4>
+<ul>
+  <li><strong>可預期</strong>:讓友謙知道「阿姨每週○曜日會來」,這個確定性本身就能降低他的焦慮</li>
+  <li><strong>一對一時間</strong>:不被 iPad、外勞、其他事情稀釋的專注陪伴</li>
+  <li><strong>用他的興趣破冰</strong>:讓他跟你聊戰爭、政治、歷史(即使你不熟),當一個好奇的聽眾比當老師更有效</li>
+  <li><strong>短時間高品質</strong> > <strong>長時間低品質</strong>:1-2 小時的高品質互動,比半天但大部分時間都在指責更有效</li>
+</ul>
+
+<h4>加上方法之後,可以期待什麼?</h4>
+<p>當阿姨開始套用上面三個技巧,通常 <strong>3-4 週內</strong>就能看到友謙的變化——他會更主動靠近、更願意分享、在互動中更放鬆。這個改變之所以會發生,是因為<strong>阿姨的心意本來就在那裡</strong>,只是現在加上了 ASD 兒童大腦能正確接收的信號形式。愛不變,只是讓愛更容易被收到。</p>
+
+<h4>姨丈的補位(如果可能)</h4>
+<p>如果姨丈能回來加入——哪怕每週 1-2 次——配合阿姨形成「雙人支持」,效果會更穩。兩個人用同一套方法、輪流出現,對 ASD 兒童的穩定感幫助很大。</p>
+
+<div class="callout green">
+  <p><strong>這條路徑可以立刻開始,不需要任何診斷,不用花錢。</strong>阿姨的每週陪伴 + 升級的方法,就是目前能做的最有效介入。</p>
+</div>
+
+<h3>路徑 2:把家教訓練成「替身」<span class="stars">★★</span></h3>
+<p>家教是目前唯一每日密集互動的成人,是最寶貴的介入槓桿。建議:</p>
+<ol>
+  <li>把這份報告和原始諮商回饋分享給家教</li>
+  <li>請家教做<strong>每週觀察日誌</strong>:情緒爆發次數、觸發情境、特殊語言、對話主題卡關、與咬咬行為</li>
+  <li>教家教使用三個核心技巧:
+    <ul>
+      <li><strong>情緒命名 + 選項法</strong>:「你看起來有點焦躁,你是覺得難、還是卡住了?」</li>
+      <li><strong>事後回顧</strong>:作業結束後花 5 分鐘聊今天課堂或家中發生的情境</li>
+      <li><strong>具體指令取代暗示</strong>:「我們剩 5 分鐘換下一題」而非「快一點」</li>
+    </ul>
+  </li>
+  <li>預算許可的話,請家教參加一次線上 ASD 家長/教師工作坊(台灣自閉症總會、星兒聯誼會、各縣市早療協會定期開辦)</li>
+</ol>
+
+<h3>路徑 3:啟動學校輔導系統 <span class="stars">★</span></h3>
+<p>學校是友謙大部分時間所在的地方,輔導室的支持是非常重要的資源。建議:</p>
+<ol>
+  <li>寫信或預約會談給友謙目前學校的<strong>輔導主任或認輔老師</strong></li>
+  <li>提供這份報告作為家中觀察的佐證</li>
+  <li>請求學校:
+    <ul>
+      <li>啟動<strong>輔導個案管理</strong></li>
+      <li>召開<strong>個案會議</strong></li>
+      <li>觀察是否需要<strong>三級輔導轉介</strong></li>
+    </ul>
+  </li>
+  <li>如果學校評估有明顯適應困難,可依《特殊教育法》與《學生輔導法》提供相關協助</li>
+</ol>
+<div class="callout yellow"><p>⚠️ <strong>重點提醒:不要再轉學。</strong>要求學校介入而不是逃避。</p></div>
+
+<h3>路徑 4:申請完整兒童發展評估</h3>
+<p>在台灣,完整的兒童發展評估是黃金標準的下一步,大部分由健保給付,不會是家庭負擔:</p>
 <div class="table-wrap">
 <table>
 <thead><tr><th>管道</th><th>特色</th></tr></thead>
 <tbody>
 <tr><td>醫學中心兒童心智科(台大、榮總、長庚等)</td><td>最完整,健保給付,需預約 3-6 個月</td></tr>
-<tr><td>地區醫院兒心科(馬偕、新光、國泰等)</td><td>候診較短,品質良好</td></tr>
-<tr><td>兒童發展聯合評估中心</td><td>衛福部補助,格式較像健檢</td></tr>
+<tr><td>地區醫院兒心科(馬偕、新光、國泰、中國附醫等)</td><td>候診較短,品質良好</td></tr>
+<tr><td>兒童發展聯合評估中心</td><td>衛福部補助,格式較像體檢健檢</td></tr>
 <tr><td>自費兒童心智評估所</td><td>時程彈性,報告品質高,費用約 1-3 萬</td></tr>
 </tbody>
 </table>
 </div>
+<p>評估完成後會拿到一份完整報告,內容包括認知能力剖面、社交風格、情緒與感官特質、適合的學習與支持方式建議。即使結果顯示沒事也是寶貴的安心資料。</p>
 
-<p><strong>評估本身,大部分是健保給付,不會是家庭的經濟負擔。</strong></p>
+<h3>路徑 5:文件化日常觀察</h3>
+<p>持續性的紀錄會讓未來任何專業介入都更精準:</p>
+<ul>
+  <li>保存所有諮商報告、這份分析、家教觀察、學校聯絡簿</li>
+  <li>每月記錄情緒事件(日期、觸發、反應、持續時間、恢復方式)</li>
+  <li>記錄學校處理紀錄、輔導晤談摘要</li>
+  <li>請家教每週寫一份簡短觀察筆記</li>
+</ul>
 
-<h2 id="sec8">七、家人能做的事——對友謙最重要的角色</h2>
+<h2 id="sec7">七、紅旗警訊清單:什麼時候必須升級處理</h2>
 
-<p>在所有陪伴友謙的人裡面,<strong>每一位願意花心思的家人都不可替代</strong>。家庭照顧者(無論是父母、外公、阿姨、姨丈)在孩子心中的地位,是任何外人(家教、諮商師、老師)都無法取代的。這不是客套話——這是兒童發展心理學最核心的原則之一。</p>
+<div class="callout red">
+<p>以下情況出現時,需要<strong>立即尋求專業協助或啟動學校與社福資源</strong>,不能再等。</p>
+</div>
 
-<p>研究發現,兒童一生的心理韌性(resilience)最關鍵的保護因子就是:<strong>至少有一個穩定、可預期、能看見他的成人</strong>(Werner, 1995; Masten, 2001)。對一個孩子來說,這個成人最理想的人選就是家中關係最親近的人。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>狀況</th><th>處理</th></tr></thead>
+<tbody>
+<tr><td>友謙出現自傷(割、撞、捏自己造成傷口)</td><td>立即通報 113 或學校輔導室</td></tr>
+<tr><td>攻擊他人造成可見傷害</td><td>通報學校,請求社工介入</td></tr>
+<tr><td>持續拒學超過 1-2 週</td><td>通報學校,強制啟動輔導資源</td></tr>
+<tr><td>出現具體自殺意念或語言</td><td>安心專線 1925、生命線 1995、送急診</td></tr>
+<tr><td>基本生活照顧出現缺口(三餐、醫療、安全)</td><td>通報 113 尋求社福資源協助</td></tr>
+<tr><td>「對空氣吵架」頻率加劇、出現幻聽陳述</td><td>立即就醫評估</td></tr>
+<tr><td><strong>性別界線事件升級</strong>(更貼近、撫摸隱私部位、言語性暗示)</td><td>立即與學校輔導會談,必要時尋求兒童性健康諮商</td></tr>
+<tr><td><strong>故事/言語出現具體自我死亡、殺害真實對象、明確方法/計畫</strong></td><td>立即就醫評估</td></tr>
+<tr><td><strong>家中出現體罰行為或孩子反擊造成傷害</strong></td><td>立即尋求社工協助與替代管教方法</td></tr>
+</tbody>
+</table>
+</div>
 
-<p>友謙現在 11 歲。<strong>他還沒有進入青少年期的疏離階段</strong>,這段時間是家人能夠真正進入他內心的最後窗口。青春期一開始(大約 12-13 歲),孩子就會開始關起門、拉開距離,家人很難再進去。</p>
+<h4>危機資源</h4>
+<ul>
+  <li><strong>113</strong> 保護專線(兒少、家暴)</li>
+  <li><strong>1925</strong> 安心專線(24 小時心理支持)</li>
+  <li><strong>1995</strong> 生命線</li>
+  <li>各縣市<strong>家庭教育中心</strong>(<strong>412-8185</strong>)——對阿姨、姨丈這類親友角色也提供諮詢</li>
+</ul>
 
-<h3>家中親近的大人,獨有的角色</h3>
+<h2 id="sec8">八、可取得的台灣資源</h2>
+
+<h3>免費或低費資源</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>資源</th><th>內容</th><th>聯絡</th></tr></thead>
+<tbody>
+<tr><td>各縣市<strong>家庭教育中心</strong></td><td>免費親職諮詢、可為親戚家屬提供建議</td><td>412-8185</td></tr>
+<tr><td><strong>社區心理衛生中心</strong></td><td>免費心理諮詢,可為<strong>照顧者</strong>提供支持</td><td>各縣市衛生局網站</td></tr>
+<tr><td>學校<strong>輔導室</strong></td><td>校內初中級輔導,可由家中任一監護人提出</td><td>直接聯繫校方</td></tr>
+<tr><td><strong>早療/兒童發展中心</strong></td><td>6-18 歲仍可申請諮詢</td><td>各縣市社會局</td></tr>
+<tr><td><strong>家扶基金會</strong>、<strong>勵馨基金會</strong></td><td>對隔代教養、照顧缺失個案提供社工資源</td><td>各地分會</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>自費但不需診斷的資源</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>資源</th><th>內容</th><th>費用概估</th></tr></thead>
+<tbody>
+<tr><td>民間心理治療所</td><td>兒童社交團體課(不叫治療)</td><td>單次 800-1500 元</td></tr>
+<tr><td>ASD 社交技巧課(PEERS、Social Thinking 為本)</td><td>團體課形式,部分機構不強制要診斷書</td><td>6-12 週 6,000-15,000 元</td></tr>
+<tr><td>藝術、音樂、戲劇治療工作坊</td><td>對 masking 兒童的非語言出口</td><td>單次 500-1500 元</td></tr>
+<tr><td>線上 ASD 家長課程</td><td>自學資源,阿姨、姨丈或家教可自行學習</td><td>免費到數千元</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>書籍/自學資源</h3>
+<ul>
+  <li>《與焦慮孩子同行》(Eli R. Lebowitz)——中文版有,適合家中有焦慮兒童的照顧者</li>
+  <li>《不一樣的孩子:自閉症類群障礙症實用手冊》——國內家長常用</li>
+  <li>Carol Gray 的 <strong>Social Stories</strong> 方法——網上有大量範例可改編</li>
+  <li>台灣自閉症總會網站(www.autism.org.tw)——家屬支援、法律諮詢、在地資源</li>
+</ul>
+
+<h2 id="sec9">九、給家人的三個具體行動(本週內可做)</h2>
 <ol>
-  <li><strong>情感的錨點</strong>——家教可以陪寫作業,但只有家人能讓他知道「不管我怎樣,我都被接住」</li>
-  <li><strong>身份認同的鏡子</strong>——孩子透過家人的眼睛看見自己是誰</li>
-  <li><strong>長期的承諾</strong>——家教會換、老師會換,家人是唯一不換的</li>
-  <li><strong>面對未來的同盟</strong>——將來的升學、職涯、婚姻決定,孩子需要家人一起討論</li>
+  <li><strong>阿姨每週陪伴開始套用新方法</strong>——下次見面時,試用「先問發生什麼,再反應」這一招,感受友謙態度的細微變化</li>
+  <li><strong>把這份報告與支持手冊分享給家教和外公</strong>——讓整個支持團隊用同一套語言與技巧,不再用「調皮、怪怪的、不聽話」來理解友謙</li>
+  <li><strong>打一通電話</strong>到友謙目前就讀學校的輔導室,預約會談,說明家中觀察並提供報告——啟動學校端的支持</li>
 </ol>
 
-<h3>現在可以開始做的事</h3>
+<h2 id="sec10">十、結語</h2>
+<p>友謙的樣貌<strong>高度符合自閉症光譜</strong>,嚴重度可能在 Level 1 偏高端到 Level 2 之間,並且可能伴隨焦慮症與依附情緒議題。在理想情境下,他應該接受完整評估、個別化治療、學校特教資源、家族治療。</p>
 
-<h4>1. 週末見面時,試著放下 iPad,與他共做一件事</h4>
-<p>不用多——<strong>15 到 30 分鐘</strong>就好。一起吃飯、一起散步、一起看他有興趣的歷史紀錄片、一起玩他有興趣的主題桌遊或戰略遊戲。</p>
-<p>重點不是做什麼,是<strong>你們兩個人之間真的有互動</strong>。</p>
-
-<h4>2. 讓他當「老師」,聽他分享</h4>
-<p>友謙對戰爭、政治、歷史有深度知識。試試這樣開口:</p>
+<p>友謙目前的處境是:</p>
 <ul>
-  <li>「最近你最感興趣的主題是什麼?給我講 10 分鐘好嗎?」</li>
-  <li>「這個事件的背景我不太懂,你能教我嗎?」</li>
+  <li>日常主要由高齡外公與外籍看護照顧</li>
+  <li>家中陪伴他的成人各自承擔不同角色——<strong>阿姨每週固定陪伴是最穩定的外部支持,家教是最有接觸密度的引導者,姨丈過去兩年的接送留下了珍貴的基礎</strong></li>
+  <li>學校已開始有適應與行為層面的訊號出現</li>
 </ul>
-<p>讓他成為專家,讓家人成為學生。這會讓他感受到<strong>「家人真的對我感興趣」</strong>——這是他內心最渴望的感受。</p>
 
-<h4>3. 當他的故事聽眾——尤其留意死亡主題</h4>
-<p>友謙的故事每個結尾都是有人死掉。這不一定是壞事,但可能代表他正在用故事處理一些他說不出口的感受。</p>
-<p>請試著當他的聽眾,然後輕輕問他:</p>
-<ul>
-  <li>「為什麼這個角色一定要死?」</li>
-  <li>「他死之前最想跟誰說什麼?」</li>
-  <li>「如果他不死,有沒有可能怎麼樣?」</li>
-</ul>
-<p>不要試圖糾正或勸阻——讓故事繼續流動,但讓他知道<strong>「有人在認真聽,有人在乎」</strong>。</p>
-
-<h4>4. 每次見面前後,預告與回顧</h4>
-<p>ASD 特質的孩子需要「可預期」。試著:</p>
-<ul>
-  <li>見面<strong>前一天</strong>:「明天幾點接你、做什麼、幾點送回」具體告知</li>
-  <li>見面<strong>結束時</strong>:「今天我們一起做了⋯⋯你覺得下次我們可以⋯⋯嗎?」簡單回顧</li>
-</ul>
-<p>這個動作會讓他知道「家人的出現是穩定的,不是隨機的」,對他的安全感建立有很大幫助。</p>
-
-<h4>5. 不急著糾正,先傾聽</h4>
-<p>當他說一些讓人覺得「怎麼會這樣想」的事情時,先不急著糾正。試試:</p>
-<ul>
-  <li>「你這樣想是因為什麼?可以告訴我嗎?」</li>
-  <li>「那你當時的感覺是什麼?」</li>
-</ul>
-<p>對光譜特質的孩子,<strong>被理解比被糾正重要一百倍</strong>。他現在最欠缺的就是「被理解」的經驗。</p>
-
-<h4>6. 當他犯錯時,把「承認」變成安全的事</h4>
-<p>友謙幾乎不會主動認錯,常用玩笑帶過。這不是叛逆——這是因為對他這種大腦的孩子,「承認 = 被罵、被嘲笑」的關聯一旦建立,他就會永遠關上這扇門。</p>
-<p>家人可以試著:</p>
-<ul>
-  <li>當他犯錯時,不要劈頭就罵——先說:「我知道這很難說出來,我等你」</li>
-  <li>當他用玩笑帶過時,不要追打——說:「我看得出來你在用玩笑蓋過去,沒關係,我們先不談」</li>
-  <li><strong>當他真的承認時</strong>——說到做到,只討論下次怎麼辦,不再翻舊帳</li>
-</ul>
-<p>核心原則:<strong>承認錯誤的成本必須低於隱藏錯誤的成本</strong>。否則他永遠不會認。</p>
-
-<h4>7. 當他崩潰的時候,陪伴而不是訓斥</h4>
-<p>友謙的情緒爆發不是故意,是他的神經系統過載了。當他情緒來的時候:</p>
-<ul>
-  <li><strong>不處理、不教訓、不講道理</strong>——他聽不進去</li>
-  <li>提供安靜的空間、降低光線與聲音</li>
-  <li>等他平靜後(可能 20 分鐘到 1 小時),再溫和地聊剛才發生什麼</li>
-</ul>
-<p>這一點如果做對了,他會越來越信任家人、越來越願意靠近。</p>
-
-<h2 id="sec9">八、關於外公的事</h2>
-
-<p>有一件事,想很坦誠地跟大家分享。</p>
-
-<p>外公是友謙日常的主要照顧者——這件事本身就<strong>非常辛苦</strong>。一位高齡長輩,獨自面對一個有 ASD 特質的孫子,沒有專業訓練、沒有替代工具、體力也有限,他承擔了太多。</p>
-
-<p>在這樣的處境下,有時候他會用體罰來回應友謙的衝突——這不是因為他不愛友謙,是因為他真的不知道還能怎麼辦。</p>
-
-<div class="callout warm">
-  <p>這件事不是要任何人扛責任,而是想讓家人都知道:<strong>外公也需要工具,他也需要被支持</strong>。家人若能多跟外公聊聊、分擔一些主要照顧時段、提供他一些跟孫子相處的替代方法,對全家都好。</p>
+<div class="callout blue">
+  <p>這是一個需要全家人一起面對的處境,但<strong>不是絕望的局</strong>。每個成員都有可以發揮的角色。</p>
 </div>
 
-<p>外公與友謙的衝突若繼續以「罵人 → 體罰 → 反擊」的方式循環,對 ASD 兒童的傷害會持續累積。這是已知的研究結論——體罰對 ASD 兒童的反效果比一般兒童更明顯。</p>
-
-<p>建議的方向:</p>
-<ul>
-  <li>家中合適的成員(輩分接近的)找一個輕鬆時機和外公聊聊,不是責備他,是<strong>謝謝他,然後一起想替代方法</strong></li>
-  <li>(已準備一份和外公對話的腳本可以參考)</li>
-  <li>能不能調整週末時段,讓友謙有時間多跟父母在一起,給外公喘息</li>
-</ul>
-
-<h2 id="sec_tutor">九、給家教的建議</h2>
-
-<p>家教老師每晚陪友謙做作業 1-2 小時——這是<strong>整個團隊裡接觸密度最高的成人</strong>。家教若能掌握對的方法,對友謙的進步比家人想像的還要關鍵。</p>
-
-<p>建議家教老師持續做以下幾件事(這些方法跟一般教學不同,是針對 ASD 兒童設計的):</p>
-
-<h3>1. 用「三招」處理友謙的情緒卡關</h3>
-<p>當作業中友謙開始煩躁、咬鉛筆、發脾氣時,不要硬推進度,改用:</p>
-<ul>
-  <li><strong>情緒命名 + 選項法</strong>:「你看起來有點焦躁,你是覺得題目太難?還是想先休息?」(讓他選,不是讓他答)</li>
-  <li><strong>具體指令取代催促</strong>:「我們再做 5 分鐘換下一題」(❌「快一點啦」)</li>
-  <li><strong>事後回顧</strong>:作業結束後花 5 分鐘聊聊「今天哪一題最卡?」「下次可以怎麼辦?」</li>
-</ul>
-
-<h3>2. 每週寫一份簡短觀察筆記</h3>
-<p>不用長,2-3 行就好。記錄:</p>
-<ul>
-  <li>本週情緒爆發次數、觸發情境</li>
-  <li>有沒有提到學校的事(尤其同學互動)</li>
-  <li>講過什麼特別的話、寫過什麼特別的故事</li>
-  <li>咬鉛筆/自言自語/搖擺等動作的頻率</li>
-</ul>
-<p>這份筆記累積下來,是未來家庭評估與學校溝通的最佳資料。</p>
-
-<h3>3. 把「分享時間」結構化</h3>
-<p>友謙喜歡講戰爭、政治、歷史。建議家教:</p>
-<ul>
-  <li>固定<strong>作業結束後留 5-10 分鐘</strong>讓他講(他會更願意配合先寫作業)</li>
-  <li>時間到要明確說:「OK 我們今天的故事時間到了,明天再聽」</li>
-  <li>練習「換話題」的提醒手勢——當家教手指比一個約定好的動作,他要在 1 分鐘內收尾</li>
-</ul>
-
-<h3>4. 觀察並通報異常訊號</h3>
-<p>如果出現以下情況,請家教<strong>第一時間通知家中聯絡人</strong>:</p>
-<ul>
-  <li>友謙寫的故事內容開始具體描述自我傷害、自殺、特定真實對象的死亡</li>
-  <li>提到不適齡的網路內容(尤其性、暴力相關)</li>
-  <li>身體出現傷口或瘀青</li>
-  <li>連續好幾天情緒非常低落、不講話、拒絕作業</li>
-</ul>
-
-<h3>5. 不是教得多 = 教得好</h3>
-<p>對 ASD 兒童來說,<strong>關係的品質比進度的快慢更重要</strong>。如果今天友謙狀況不好,完成的少沒關係——但不要破壞信任。</p>
-
-<div class="callout warm">
-  <p>家教若願意,可以和家人約一次線上會談,大家對齊用什麼語言、什麼方法陪友謙。同調的環境對 ASD 兒童來說,是最好的禮物。</p>
-</div>
-
-<h2 id="sec10">十、從「個別家庭」到「共同團隊」</h2>
-
-<p>友謙現在身邊有好幾位願意照顧他的大人——父母、外公、家教、阿姨、姨丈。這本身是一個<strong>很好的基礎</strong>。</p>
-
-<p>如果大家願意用<strong>同樣的語言、同樣的理解</strong>面對友謙,他會感受到一個穩定、一致、可預期的環境。這對光譜特質的孩子來說,是最好的禮物。</p>
-
-<p>具體建議:</p>
+<h4>幾個必須記住的事</h4>
 <ol>
-  <li><strong>家中每位成員都讀過這份文件</strong>(您正在做的事)</li>
-  <li><strong>家庭內部找時間討論</strong>——接下來怎麼一起陪友謙</li>
-  <li><strong>與家教溝通</strong>——請家教用一致的方式與友謙互動</li>
-  <li><strong>支持外公</strong>——分擔照顧、提供工具</li>
-  <li><strong>與學校建立溝通</strong>——學校是友謙大部分時間所在的地方,老師的理解至關重要</li>
-  <li><strong>考慮接受評估</strong>——有了客觀報告,團隊合作會更精準</li>
+  <li><strong>神經差異不會因為陪伴而消失,但困難的嚴重度會隨陪伴品質變動</strong>——過去兩年的接送經驗已經驗證過這件事</li>
+  <li><strong>Masking 是雙面刃</strong>——讓人在重要他人面前看不到他的真實困難,但也耗盡孩子的能量。家人能做的是<strong>在安全的時間與空間,讓他不用戴面具</strong></li>
+  <li><strong>許多介入可以從家庭內部立刻開始</strong>——學校輔導、家人陪伴、家教方法升級、評估申請,都有路可走</li>
+  <li><strong>一個穩定的成人可以改變一切</strong>——發展心理學中最 robust 的兒童韌性保護因子就是 "<strong>at least one stable adult</strong>"(Werner, 1995;Masten, 2001)</li>
+  <li><strong>三個時間壓力議題</strong>——性別界線事件(進入青春期前夕)、每個故事都有人死(情緒承載指標)、右手三指沉默(羞恥累積)——這三件事有共同的時鐘,不處理會在國中階段集中引爆</li>
 </ol>
 
-<h2 id="sec11">十一、最後想說的話</h2>
+<p>友謙不是壞掉的小孩,也不是命運最壞的那種孩子。他目前剩下的運氣,就是<strong>家中還有阿姨每週一天的堅持、姨丈過去兩年留下的基礎、外公與家教每天的陪伴——這群願意花心思的人</strong>。沒有一個人需要扛全部,只要家人願意<strong>同調合作、用對方法</strong>,改變就會發生。</p>
 
-<p>陪伴一個孩子從來不是件簡單的事,尤其友謙是一個特別的孩子——<strong>他需要的陪伴方式與一般孩子不同</strong>。這不是任何人的錯。</p>
+<p>這件事長期會有效,文獻上有充分的證據,過去的經驗也已經驗證過了。</p>
 
-<p>有些事情過去可能沒有被注意到,或者是因為友謙在某些家人面前表現得特別好(事實上,光譜特質的孩子常常會在最在乎的人面前特別努力「表現得正常」——這叫 <strong>masking</strong>,是他很愛、很在乎那些人的證據)。</p>
+<h2 id="appendix">附錄:關於自閉症光譜(ASD)——完整基礎說明</h2>
+<p class="section-intro">這一節是為了讓阿姨、姨丈、家教、外公都能有共同的知識基礎。理解 ASD 是什麼、不是什麼,是所有介入的起點。</p>
 
-<p>但正因為如此,不同的家人看到的,可能是<strong>不同版本的友謙</strong>。這不表示誰看錯了,是他在不同關係裡有不同的樣子——而這件事本身就很需要被理解。</p>
+<h3>A1. 什麼是自閉症光譜障礙(Autism Spectrum Disorder, ASD)</h3>
+<p><strong>ASD 是一種神經發展差異(neurodevelopmental condition)</strong>,不是心理疾病,也不是教養不當的結果。它的核心特徵是大腦在<strong>社會溝通</strong>與<strong>行為/興趣模式</strong>這兩個領域的運作方式與多數人不同。</p>
 
-<p>這份文件提到的一些事情,看了可能會有些不舒服——尤其是學校通報的事、外公的衝突、ChatGPT 的使用、右手三指的話題默契。所有家人的初衷都是想保護他、想讓他開心、想讓他自由——這份心意是真的。</p>
-
-<p>但想跟所有家人分享的是:<strong>對 ASD 兒童來說,「自由」不一定是禮物,「規則」反而是禮物</strong>。他需要的不是更多自由,而是更多<strong>可預期、明確、安全的界線</strong>。</p>
-
-<p>這跟「嚴格」是兩回事——這是「為他量身打造的安全感」。</p>
-
-<p>現在他 11 歲,還有時間。許多光譜特質的孩子在<strong>家人開始理解他之後</strong>,人生軌跡有很大改變——從被誤解的「怪小孩」,變成「有自己節奏的優秀青少年」。</p>
-
-<p>友謙可以走這條路。但他<strong>需要家人先理解他</strong>,才能走得穩。</p>
-
-<div class="callout warm">
-  <p>這份文件是一個<strong>邀請</strong>——邀請每位家人更多地認識友謙,邀請大家一起加入支持他的團隊。</p>
-  <p>不是要批評誰、不是要告訴誰該怎麼做。只是把看到的事整理出來,想和大家一起想想:<strong>我們能怎麼一起幫他?</strong></p>
+<div class="callout red">
+  <div class="callout-title">ASD 不是</div>
+  <ul>
+    <li>不是父母「沒教好」或「太寵」造成的</li>
+    <li>不是疫苗引起的(這個假說已被大量研究徹底推翻)</li>
+    <li>不是「只是內向」或「個性孤僻」</li>
+    <li>不是可以靠意志力或長大就「好」的東西</li>
+    <li>不是智能問題(ASD 患者智商分布極廣,從重度智能障礙到天才都有)</li>
+  </ul>
 </div>
 
-<h2 id="faq">附錄:常見疑問</h2>
+<div class="callout green">
+  <div class="callout-title">ASD 是</div>
+  <ul>
+    <li>一種終生的神經特質(lifelong neurological profile)</li>
+    <li>有強烈的遺傳基礎(遺傳率估計 64-91%,Tick et al., 2016 統合分析)</li>
+    <li>大腦在<strong>社會訊號處理、感官整合、認知彈性</strong>等面向的差異</li>
+    <li>一種「光譜」——沒有兩個 ASD 患者的樣貌會完全相同</li>
+  </ul>
+</div>
 
-<h4>Q:做了評估會不會讓孩子被貼標籤?</h4>
-<p>A:評估報告是私人文件,由家人決定是否使用、使用在哪。許多家庭的評估報告只用在家內部理解,不會給學校或任何機構。</p>
+<h3>A2. 從「亞斯伯格症」到「光譜」——名詞的歷史</h3>
+<p>過去台灣常見的診斷名詞「亞斯伯格症候群」(Asperger's Syndrome)<strong>已於 2013 年 DSM-5 被併入 ASD</strong>。現在的診斷只剩一個:自閉症光譜障礙(ASD),依嚴重度分三級:</p>
 
-<h4>Q:如果真的是 ASD,是不是一輩子都這樣?</h4>
-<p>A:光譜特質是終生的,但<strong>表現方式會因支持而改變</strong>。許多成人回頭看,會說「我還是我,但我現在更自在了」。早理解,就是早讓他自在。</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>嚴重度</th><th>描述</th><th>實際樣貌</th></tr></thead>
+<tbody>
+<tr><td><strong>Level 1</strong></td><td>需要支持(Requiring support)</td><td>可獨立生活、有語言,但社交困難、興趣固著在不引導下會影響功能</td></tr>
+<tr><td><strong>Level 2</strong></td><td>需要顯著支持</td><td>語言/社交困難較明顯,對改變反應強烈,刻板行為清楚可見</td></tr>
+<tr><td><strong>Level 3</strong></td><td>需要非常顯著支持</td><td>語言少或無,日常生活需大量協助</td></tr>
+</tbody>
+</table>
+</div>
 
-<h4>Q:會不會影響升學或未來?</h4>
-<p>A:如果不申請身心障礙證明,評估報告不會出現在任何官方紀錄。如果申請,反而會有升學、就業上的特殊管道支持。這是<strong>家庭可以選擇的</strong>。</p>
+<p><strong>友謙可能的位置:</strong>依目前資訊,最可能落在 <strong>Level 1 偏高端到 Level 2</strong> 之間。他的語言與認知能力支撐 Level 1,但攻擊、換校、無朋友、明顯 stimming、焦慮共病等讓他靠近 Level 2。</p>
 
-<h4>Q:這不會只是成長階段的問題嗎?</h4>
-<p>A:有可能。但「等等看」這個選項有風險——光譜特質的孩子如果到青少年仍未被理解,焦慮、憂鬱、拒學的風險會大幅升高。<strong>早一點確認比晚一點後悔好</strong>。</p>
+<h3>A3. ASD 的核心症狀群(用白話說)</h3>
 
-<h4>Q:是不是家人陪伴不夠才這樣?</h4>
-<p>A:<strong>不是</strong>。光譜特質是遺傳與神經發展層面的特質,和陪伴多少無關。但家人的陪伴會決定——同樣的光譜特質,發展成有自信的大人,或是長期受苦的孩子。</p>
+<h4>第一組:社會溝通與互動的差異</h4>
 
-<h4>Q:如果家中不同人對處理方式有不同看法,該怎麼辦?</h4>
-<p>A:這是常見的家庭挑戰。建議先由家中關係最近、決策權最高的成員拍板大方向,再由合適的人出面跟其他成員溝通——同調比追求每個細節一致更重要。可以協助提供具體的對話方式。</p>
+<p><strong>「看不到」社會訊號:</strong></p>
+<ul>
+  <li>別人臉色變了、語氣冷了、肢體往後退——這些提示一般人秒懂,ASD 大腦可能需要被明確告知</li>
+  <li>結果是「白目」、「不會看場合」——但不是故意,是真的沒收到訊號</li>
+</ul>
+
+<p><strong>對話節奏不同:</strong></p>
+<ul>
+  <li>難以抓住「我該換對方講了」的時機</li>
+  <li>容易長篇獨白(monologue)分享興趣</li>
+  <li>不容易讀出「對方已經不想聽了」</li>
+</ul>
+
+<p><strong>抽象語言困難:</strong></p>
+<ul>
+  <li>暗示、反諷、玩笑可能被照字面理解</li>
+  <li>「你再玩就試試看」——ASD 兒童可能真的去試</li>
+  <li>表情、語調的微妙變化對他們像外語</li>
+</ul>
+
+<p><strong>心智理論(Theory of Mind)發展差異:</strong></p>
+<ul>
+  <li>理解「別人有自己的想法,且與我不同」這件事較晚成熟</li>
+  <li>不是沒有同理心,是推論他人心理狀態的神經迴路運作不同</li>
+</ul>
+
+<h4>第二組:受限/重複的行為與興趣</h4>
+
+<p><strong>特殊興趣(special interest):</strong></p>
+<ul>
+  <li>對某個主題的投入深度超過同齡人</li>
+  <li>友謙的戰爭、政治、歷史就是典型</li>
+  <li>這是優勢,也是社交阻礙(別人不想聽那麼久)</li>
+</ul>
+
+<p><strong>對「一樣」的需求:</strong></p>
+<ul>
+  <li>習慣的路線、食物、作息被打亂會嚴重不適</li>
+  <li>預告與結構化可大幅降低焦慮</li>
+</ul>
+
+<p><strong>刻板動作(stimming):</strong></p>
+<ul>
+  <li>搖擺、甩手、踮腳、旋轉、哼歌、咬物</li>
+  <li><strong>這些動作是自我調節的工具</strong>,不是壞習慣</li>
+  <li>硬性禁止反而會讓焦慮累積爆發</li>
+  <li>友謙同時有多種 stimming → 神經系統正在高度運作的訊號</li>
+</ul>
+
+<p><strong>感官處理差異:</strong></p>
+<ul>
+  <li>對聲音、光、氣味、觸覺、動作的反應可能過敏或過鈍</li>
+  <li>走路看地可能是視覺訊息過載的逃避</li>
+  <li>咬鉛筆可能是口腔尋求(本體感覺輸入)</li>
+  <li>有些孩子對某種質料衣服完全無法忍受,對另一種卻要天天穿</li>
+</ul>
+
+<h3>A4. ASD 在台灣的現況</h3>
+
+<h4>盛行率</h4>
+<ul>
+  <li>全球 ASD 盛行率約 <strong>1-2%</strong>(CDC, 2023 美國資料為 1/36)</li>
+  <li>台灣正式診斷率較低(約 0.3-0.5%),但這反映<strong>低診斷</strong>而非低盛行——許多人終生未被評估</li>
+  <li>男女比例約 <strong>4:1</strong>,但女性與高認知 masking 者常被漏診</li>
+</ul>
+
+<h4>台灣的診斷路徑</h4>
+<ol>
+  <li><strong>兒童心智科門診</strong>(醫學中心或大型地區醫院):黃金標準,健保給付</li>
+  <li><strong>兒童發展聯合評估中心</strong>:衛福部補助,6 歲前最完整,6-18 歲仍可用</li>
+  <li><strong>自費臨床心理師/心理治療所</strong>:時程快,報告較家長友善,費用 1-3 萬</li>
+</ol>
+
+<h4>領有身心障礙證明(俗稱「殘障手冊」)的考量</h4>
+<ul>
+  <li>領證可取得特教資源、就學支持、稅務減免、優先就醫等</li>
+  <li>但在某些升學、就業情境可能有實務影響</li>
+  <li>這是<strong>家庭的個別決定</strong>,可以先評估、拿到診斷、再決定是否申請證明</li>
+</ul>
+
+<h4>特殊教育資源</h4>
+<ul>
+  <li>依《特殊教育法》,學校必須為身心障礙學生提供<strong>個別化教育計畫(IEP)</strong></li>
+  <li>可申請資源班、巡迴輔導、學習輔具</li>
+  <li>友謙目前沒有診斷,但學校若主動觀察到困難,仍可啟動三級輔導</li>
+</ul>
+
+<h3>A5. ASD 與各年齡階段的樣貌</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th style="width:18%">年齡</th><th>常見樣貌</th><th>需要注意的事</th></tr></thead>
+<tbody>
+<tr><td><strong>0-3 歲</strong></td><td>眼神接觸少、叫名無反應、語言延遲、不指物</td><td>早期介入 0-6 歲黃金期</td></tr>
+<tr><td><strong>3-6 歲</strong></td><td>興趣固著、玩法重複、同儕互動困難</td><td>早療申請</td></tr>
+<tr><td><strong>6-12 歲</strong>(友謙)</td><td>社交困難顯現、霸凌風險、成績落差、焦慮共病開始</td><td><strong>這是關鍵期</strong>,不處理會累積</td></tr>
+<tr><td><strong>12-18 歲</strong></td><td>青春期加劇焦慮憂鬱、社交需求增但能力不足、身份困惑</td><td>憂鬱與自傷風險上升</td></tr>
+<tr><td><strong>18+ 歲</strong></td><td>獨立生活、職場、親密關係挑戰</td><td>許多人在這階段才被診斷</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>A6. ASD 的共病——為什麼友謙不是「只有 ASD」</h3>
+<p>ASD 很少單獨出現,典型共病率(統合分析數據):</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>共病</th><th style="width:24%">ASD 族群中的盛行率</th><th style="width:28%">友謙是否疑似</th></tr></thead>
+<tbody>
+<tr><td>焦慮症</td><td>40-50%</td><td><span class="chip red">✅ 高度疑似</span> 怕鬼、咬鉛筆、masking 後座力</td></tr>
+<tr><td>ADHD</td><td>30-50%</td><td><span class="chip yellow">🟡 需評估</span> 成績差、認知優勢反差</td></tr>
+<tr><td>憂鬱症</td><td>20-40%(青少年後上升)</td><td><span class="chip yellow">🟡 需觀察</span> 刻意避談父母</td></tr>
+<tr><td>睡眠障礙</td><td>40-80%</td><td><span class="chip gray">❌ 目前未顯</span></td></tr>
+<tr><td>感覺統合困難</td><td>60-90%</td><td><span class="chip red">✅ 高度疑似</span> 咬、看地、stimming</td></tr>
+<tr><td>癲癇</td><td>5-30%</td><td><span class="chip gray">❌ 目前未顯</span></td></tr>
+<tr><td>強迫症</td><td>17-37%</td><td><span class="chip yellow">🟡 需觀察</span></td></tr>
+<tr><td>對立反抗/行為問題</td><td>30-50%</td><td><span class="chip red">✅ 高度疑似</span> 攻擊外公</td></tr>
+<tr><td>智能障礙</td><td>30%(整體 ASD)</td><td><span class="chip gray">❌ 明顯排除</span></td></tr>
+<tr><td>天賦/資優</td><td>約 10-15%(2e)</td><td><span class="chip yellow">🟡 可能</span> 認知超齡</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout green">
+  <p><strong>對友謙的意涵:</strong>單看 ASD 不夠,需要同時評估焦慮、ADHD、2e 資優等面向。好消息是:<strong>很多共病在 ASD 被處理之後也會跟著緩解</strong>。</p>
+</div>
+
+<h3>A7. 實證有效的介入方向(What Works)</h3>
+
+<h4>高證據等級的介入</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th style="width:32%">介入</th><th>針對</th><th style="width:24%">適合友謙嗎</th></tr></thead>
+<tbody>
+<tr><td><strong>應用行為分析(ABA)</strong></td><td>行為建立、語言</td><td>適合幼兒,11 歲較少用完整 ABA</td></tr>
+<tr><td><strong>社交故事(Social Stories, Carol Gray)</strong></td><td>情境預演、規則理解</td><td><span class="chip green">✅ 非常適合</span></td></tr>
+<tr><td><strong>社交思考(Social Thinking, M. Winner)</strong></td><td>心智理論訓練</td><td><span class="chip green">✅ 非常適合</span></td></tr>
+<tr><td><strong>PEERS 青少年社交技巧</strong></td><td>友誼建立、對話</td><td><span class="chip green">✅ 11 歲開始可用</span></td></tr>
+<tr><td><strong>CBT 認知行為治療(調整版)</strong></td><td>焦慮、憂鬱共病</td><td><span class="chip green">✅ 針對焦慮</span></td></tr>
+<tr><td><strong>TEACCH 結構化教學</strong></td><td>日常結構化、視覺化</td><td><span class="chip green">✅ 家中與學校可用</span></td></tr>
+<tr><td><strong>感覺統合治療</strong></td><td>感官過載</td><td><span class="chip yellow">🟡 可考慮</span></td></tr>
+<tr><td><strong>正念調整版 MYmind</strong></td><td>情緒調節</td><td><span class="chip yellow">🟡 青少年後期更適合</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout red">
+  <div class="callout-title">證據不足或爭議大的介入(建議避免或謹慎)</div>
+  <ul>
+    <li>排除飲食(麩質、酪蛋白)——大多數研究不支持</li>
+    <li>螯合療法、幹細胞療法——<strong>有害,不要做</strong></li>
+    <li>高壓氧治療——證據薄弱</li>
+    <li>強迫眼神接觸訓練——近年被批評為傷害性 masking 強化</li>
+  </ul>
+</div>
+
+<h3>A8. ASD 兒童的優勢(strengths-based view)</h3>
+<p>ASD 不只是缺失,許多特質在適當環境下是<strong>真實的優勢</strong>:</p>
+<ul>
+  <li><strong>深度專注</strong>:對有興趣的主題可以投入一般人做不到的時間</li>
+  <li><strong>系統思維</strong>:擅長看出規則、模式、邏輯結構</li>
+  <li><strong>誠實直接</strong>:較少社交政治,說的多是真的</li>
+  <li><strong>忠誠度高</strong>:一旦信任某人,關係穩固</li>
+  <li><strong>獨立思考</strong>:較不受同儕壓力、流行影響</li>
+  <li><strong>對知識的熱情</strong>:學習動機內生,不需外在獎勵</li>
+</ul>
+<p>許多科技界、學術界、藝術界的重要貢獻者(有些公開承認 ASD,有些被後世推測)都屬光譜。友謙對戰爭、政治、歷史的深度投入,在適當引導下可能成為<strong>職涯資產</strong>——歷史研究、政治分析、軍事評論、策略顧問、作家、學者都是可能的方向。</p>
+
+<h3>A9. 常見迷思破除</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th style="width:40%">迷思</th><th>事實</th></tr></thead>
+<tbody>
+<tr><td>「ASD 就是智能障礙」</td><td>錯。30% ASD 伴隨智能障礙,但 70% 智能在正常或以上</td></tr>
+<tr><td>「ASD 沒有感情」</td><td>錯。ASD 患者情感深厚,只是表達方式不同</td></tr>
+<tr><td>「長大就好了」</td><td>錯。ASD 是終生特質,但表現方式會變,支持品質決定功能</td></tr>
+<tr><td>「ASD 不需要朋友」</td><td>錯。許多 ASD 患者渴望友誼,只是建立方式困難</td></tr>
+<tr><td>「ASD 都是天才」</td><td>錯。天才型(savant)只佔約 10%,不要給家長不切實際的期待</td></tr>
+<tr><td>「認真教就會好」</td><td>錯。教養很重要,但不能改變神經底層,只能改善外顯功能</td></tr>
+<tr><td>「不要讓孩子知道自己有 ASD」</td><td>錯。研究顯示適齡告知能減少身份混亂與自我責備</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>A10. 給阿姨、姨丈與家教最關鍵的 7 個日常態度</h3>
+<ol>
+  <li><strong>把「故意」改成「困難」</strong>——不是不肯,是不會;不是不聽話,是訊息沒收到</li>
+  <li><strong>具體大於抽象</strong>——說清楚要什麼、什麼時候、多久</li>
+  <li><strong>預告大於突襲</strong>——行程變動要提前告知</li>
+  <li><strong>事後大於當下</strong>——情緒爆發時不教,平靜後再回顧</li>
+  <li><strong>結構大於自由</strong>——他需要可預期,不是限制他</li>
+  <li><strong>優勢大於缺陷</strong>——看到他的好,不只盯著他的難</li>
+  <li><strong>陪伴大於矯正</strong>——在他旁邊比改造他更重要</li>
+</ol>
+
+<h3>A11. 一段想對阿姨說的話</h3>
+<div class="callout blue">
+  <p>你不是專業人員,不用把自己訓練成治療師。三個月來,你每週固定一天去陪友謙,這件事情本身的重量,比任何專業技巧都大。很多親戚不會做到這個程度——你已經做了最難的事。</p>
+  <p>現在只需要多一個步驟:<strong>在「愛」的基礎上,加上「方法」</strong>。這份報告提供的三個技巧(先問再反應、情緒命名、事後回顧),不是要改變你這個人,是要讓你的愛能被友謙的大腦正確地「收到」。</p>
+  <p>ASD 兒童最常走掉的路不是因為診斷晚,是因為<strong>在人生早期沒有遇到一個願意理解他、而不是試圖改造他的人</strong>。很多 ASD 成人回顧童年時,會記得某一個曾經真正「看見」他們的人——那個人可能不是父母,而是爺爺、阿姨、老師、某個早期認識的朋友。</p>
+  <p style="font-size:17px; font-weight:600; color:var(--accent);">對友謙來說,你很可能就是那個人。</p>
+</div>
+
+<h2 id="refs">參考文獻</h2>
+<ul style="font-size:14px; line-height:1.7;">
+  <li>American Psychiatric Association. (2022). <em>Diagnostic and Statistical Manual of Mental Disorders</em> (5th ed., text rev.). APA Publishing.</li>
+  <li>Assouline, S. G., & Foley-Nicpon, M. (2020). Twice-exceptional learners: Perspectives for research and practice. In <em>APA Handbook of Giftedness and Talent</em> (pp. 457–467).</li>
+  <li>Baron-Cohen, S., Leslie, A. M., & Frith, U. (1985). Does the autistic child have a "theory of mind"? <em>Cognition, 21</em>(1), 37–46.</li>
+  <li>Baron-Cohen, S. (1995). <em>Mindblindness: An essay on autism and theory of mind</em>. MIT Press.</li>
+  <li>Bird, G., & Cook, R. (2013). Mixed emotions: The contribution of alexithymia to the emotional symptoms of autism. <em>Translational Psychiatry, 3</em>(7), e285.</li>
+  <li>Cage, E., & Troxell-Whitman, Z. (2019). Understanding the reasons, contexts and costs of camouflaging for autistic adults. <em>Journal of Autism and Developmental Disorders, 49</em>(5), 1899–1911.</li>
+  <li>Grove, R., Hoekstra, R. A., Wierda, M., & Begeer, S. (2018). Special interests and subjective wellbeing in autistic adults. <em>Autism Research, 11</em>(5), 766–775.</li>
+  <li>Hull, L., Petrides, K. V., Allison, C., Smith, P., Baron-Cohen, S., Lai, M. C., & Mandy, W. (2017). "Putting on my best normal": Social camouflaging in adults with autism spectrum conditions. <em>Journal of Autism and Developmental Disorders, 47</em>(8), 2519–2534.</li>
+  <li>Kinnaird, E., Stewart, C., & Tchanturia, K. (2019). Investigating alexithymia in autism: A systematic review and meta-analysis. <em>European Psychiatry, 55</em>, 80–89.</li>
+  <li>Lai, M. C., Lombardo, M. V., & Baron-Cohen, S. (2014). Autism. <em>The Lancet, 383</em>(9920), 896–910.</li>
+  <li>Leitner, Y. (2014). The co-occurrence of autism and attention deficit hyperactivity disorder in children. <em>Frontiers in Human Neuroscience, 8</em>, 268.</li>
+  <li>Masten, A. S. (2001). Ordinary magic: Resilience processes in development. <em>American Psychologist, 56</em>(3), 227–238.</li>
+  <li>Schore, A. N. (2001). Effects of a secure attachment relationship on right brain development, affect regulation, and infant mental health. <em>Infant Mental Health Journal, 22</em>(1-2), 7–66.</li>
+  <li>Tick, B., Bolton, P., Happé, F., Rutter, M., & Rijsdijk, F. (2016). Heritability of autism spectrum disorders: A meta-analysis of twin studies. <em>Journal of Child Psychology and Psychiatry, 57</em>(5), 585–595.</li>
+  <li>van Steensel, F. J. A., Bögels, S. M., & Perrin, S. (2011). Anxiety disorders in children and adolescents with autistic spectrum disorders: A meta-analysis. <em>Clinical Child and Family Psychology Review, 14</em>(3), 302–317.</li>
+  <li>Werner, E. E. (1995). Resilience in development. <em>Current Directions in Psychological Science, 4</em>(3), 81–85.</li>
+  <li>Winter-Messiers, M. A. (2007). From tarantulas to toilet brushes: Understanding the special interest areas of children and youth with Asperger syndrome. <em>Remedial and Special Education, 28</em>(3), 140–152.</li>
+</ul>
 
 <hr>
 
-<div class="callout blue">
-  <p style="text-align:center; margin: 0;">
-    <strong>友謙是您的孩子,也是我們都關心的孩子。讓我們一起幫他。</strong>
-  </p>
-</div>
-
-<p style="text-align:center; color:var(--ink-mute); font-size:14px; margin-top: 32px;">
-這份文件由關心友謙的家人整理<br>
-基於專業諮商觀察與兒童發展文獻<br>
-2026-04-16
+<p style="text-align:center; color:var(--ink-mute); font-size:14px;">
+本報告更新於 2026-04-16<br>
+整合了諮商回饋、阿姨、姨丈與家教的日常觀察<br>
+建議每 3-6 個月根據友謙的狀態變化重新檢視
 </p>
 
 </article>
@@ -751,11 +1342,36 @@
 </div>
 
 <script>
+  // Progress bar
   const progress = document.getElementById('progress');
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
-    progress.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = pct + '%';
   });
+
+  // Active TOC highlight
+  const sections = document.querySelectorAll('h2[id]');
+  const tocLinks = document.querySelectorAll('.toc a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        tocLinks.forEach(a => {
+          a.style.background = '';
+          a.style.color = '';
+          if (a.getAttribute('href') === '#' + id) {
+            a.style.background = 'var(--accent-light)';
+            a.style.color = 'var(--accent)';
+            a.style.fontWeight = '600';
+          } else {
+            a.style.fontWeight = '';
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
